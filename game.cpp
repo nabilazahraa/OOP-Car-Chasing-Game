@@ -26,7 +26,7 @@ bool Game::init()
 		}
 
 		//Create window
-		gWindow = SDL_CreateWindow( "HU Mania", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+		gWindow = SDL_CreateWindow( "Sprint Car Derby", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
 		if( gWindow == NULL )
 		{
 			printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
@@ -125,9 +125,12 @@ void Game::run( )
 	SDL_Event e;
 
 	SprintCar sprintcar;
+	mouse m;
+	button play;
 
 	while( !quit )
 	{
+		m.update();
 		//Handle events on queue
 		while( SDL_PollEvent( &e ) != 0 )
 		{
@@ -153,6 +156,7 @@ void Game::run( )
 		//***********************draw the objects here********************
 
 		sprintcar.DrawObject();
+		m.draw();
 
 		//****************************************************************
     	SDL_RenderPresent(Drawing::gRenderer); //displays the updated renderer
