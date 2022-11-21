@@ -66,7 +66,7 @@ bool Game::loadMedia()
 	//Loading success flag
 	bool success = true;
 	
-	Drawing::assets = loadTexture("./assets/redcar.png");
+	Drawing::assets = loadTexture("./assets/truck.png");
     gTexture = loadTexture("./assets/road.png");
 	if(Drawing::assets==NULL || gTexture==NULL)
     {

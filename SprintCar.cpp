@@ -13,9 +13,17 @@ void SprintCar::CreateObject()
     // int choice;
     // cin >>choice;
     // if(choice ==1){
-    h = new heroCar(0,0,143,262);
-    // }
     
+     //sportscar
+    // h = new heroCar(0,0,143,262);
+    // }
+
+    //bike 
+    // h = new heroCar(84,57,189,541) ;
+
+    //truck
+    h = new heroCar(34,0,219,410) ;
+
     //police car
     // p =  new policeCar;
 }
