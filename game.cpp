@@ -125,16 +125,18 @@ void Game::run( )
 	SDL_Event e;
 
 	SprintCar sprintcar;
-	mouse m;
-	button play;
+	// mouse m;
+	// button play;
 
+	sprintcar.CreateObject();
 	while( !quit )
 	{
-		m.update();
+		// m.update();
+		
 		//Handle events on queue
 		while( SDL_PollEvent( &e ) != 0 )
 		{
-			sprintcar.CreateObject();
+			
 			//User requests quit
 			if( e.type == SDL_QUIT )
 			{
@@ -156,7 +158,7 @@ void Game::run( )
 		//***********************draw the objects here********************
 
 		sprintcar.DrawObject();
-		m.draw();
+		// m.draw();
 
 		//****************************************************************
     	SDL_RenderPresent(Drawing::gRenderer); //displays the updated renderer

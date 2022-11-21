@@ -1,17 +1,17 @@
-#include <SDL.h>
-#include <iostream>
-#include "game.hpp"
-using namespace std;
+// #include <SDL.h>
+// #include <iostream>
+// #include "game.hpp"
+// using namespace std;
 
-class Mouse{
-    public:
-    SDL_Texture *tex;
-    SDL_Rect rect;
-    SDL_Rect point;
+// class Mouse{
+//     public:
+//     SDL_Texture *tex;
+//     SDL_Rect rect;
+//     SDL_Rect point;
 
-    Mouse();
+//     Mouse();
 
-    void update();
+//     void update();
 
-    void draw();
-};
+//     void draw();
+// };

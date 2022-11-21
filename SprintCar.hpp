@@ -8,7 +8,7 @@ using namespace std;
 class SprintCar{
     public:
     
-    heroCar h;
+    heroCar *h;
     // policeCar p*;
 
 
