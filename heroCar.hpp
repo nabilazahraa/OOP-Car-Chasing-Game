@@ -12,8 +12,7 @@ class heroCar:public car{
     
 
     public:
-    // void Drive(); //runtime polymorphism
-    //draw function 
+    
     heroCar(int, int, int, int);
     void Draw();
     void Drive(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycode key);

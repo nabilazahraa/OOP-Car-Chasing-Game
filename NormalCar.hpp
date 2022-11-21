@@ -1,13 +1,11 @@
 #include "car.hpp"
 
-class PoliceCar: public car{
+class NormalCar: public car{
     int speed;
     SDL_Rect srcRect, moverRect;
-    SDL_Rect sprite = {15,27, 139,256};
+    SDL_Rect sprite ;
 
-
-    PoliceCar();
+    NormalCar(int, int, int, int);
     void Draw();
     void Drive();
-    
 };
