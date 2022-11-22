@@ -25,15 +25,18 @@ void SprintCar::CreateObject()
     h = new heroCar(34,0,219,410) ;
 
     //police car
-    // p =  new policeCar;
+
+    p =  new PoliceCar;
 }
 
 void SprintCar::DrawObject()
 {
 
     h->Draw();
+    p->Draw();
 }
 void SprintCar::move(SDL_Keycode key)
 {
      h->Drive(Drawing::gRenderer,Drawing::assets, key);
+    p->Drive(Drawing::gRenderer,Drawing::assets, key);
 }

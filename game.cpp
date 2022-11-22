@@ -66,7 +66,7 @@ bool Game::loadMedia()
 	//Loading success flag
 	bool success = true;
 	
-	Drawing::assets = loadTexture("./assets/truck.png");
+	Drawing::assets = loadTexture("./assets/policecar.png");
     gTexture = loadTexture("./assets/road.png");
 	if(Drawing::assets==NULL || gTexture==NULL)
     {
@@ -143,12 +143,8 @@ void Game::run( )
 				quit = true;
 			}
 
-			if(e.type == SDL_KEYDOWN){
-			//this is a good location to add pigeon in linked list.
-				// int xMouse, yMouse;
-				// SDL_GetMouseState(&xMouse,&yMouse);
-				// humania.createObject(xMouse, yMouse);
-				// sprintcar.h.Drive(Drawing::gRenderer, Drawing::assets, e.key.keysym.sym);
+			if(e.type == SDL_KEYDOWN)
+			{
 				sprintcar.move(e.key.keysym.sym);
 			}
 		}

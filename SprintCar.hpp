@@ -1,7 +1,8 @@
 #include <iostream>
 #include "heroCar.hpp"
 #include "Drawing.hpp"
-// #include "policeCar.hpp"
+#include "PoliceCar.hpp"
+
 #include <SDL.h>
 using namespace std;
 
@@ -9,7 +10,7 @@ class SprintCar{
     public:
     
     heroCar *h;
-    // policeCar p*;
+    PoliceCar *p;
 
 
     

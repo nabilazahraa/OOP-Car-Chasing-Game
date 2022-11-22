@@ -1,15 +1,17 @@
 #include <iostream>
 #include "car.hpp"
 #include <SDL.h>
+#pragma once
 
 class heroCar:public car{
-    public:
+    private:
     int speed;
     int score;
     SDL_Rect srcRect, moverRect;
     SDL_Rect sprite ;
-    //sprite value
-    
+    //Bullet b;
+    //Score s;
+    //Health h;
 
     public:
     
