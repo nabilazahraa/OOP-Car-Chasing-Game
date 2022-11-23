@@ -7,7 +7,7 @@ class heroCar:public car{
     // int speed;
     int score;
     SDL_Rect srcRect, moverRect;
-    SDL_Rect sprite = {0,0,143,262};
+    SDL_Rect sprite = {0,0,143,262}; 
     //sprite value
     
 

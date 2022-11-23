@@ -4,7 +4,7 @@ using namespace std;
 
 
 Mouse::Mouse(){
-        tex = IMG_loadTexture (gRenderer, "cursor.jpg");
+        tex = IMG_loadTexture (gWindow, "cursor.jpg");
         rect.w = 25;
         rect.h = 25;
         point.w = 1;
@@ -19,5 +19,5 @@ void Mouse:: update(){
     }
 
 void Mouse:: draw(){
-        SDL_RenderCopy(gRenderer, tex, NULL, &rect);
+        SSDL_RenderCopy(Drawing::gRenderer, Drawing::assets, NULL, &drect);
     }

@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include <iostream>
 #include "game.hpp"
+#include "Drawing.hpp"
 using namespace std;
 
 class Mouse{
@@ -11,7 +12,7 @@ class Mouse{
 
     Mouse();
 
-    void update();
+    void update(); 
 
     void draw();
 };
