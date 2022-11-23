@@ -6,6 +6,7 @@
 #include <string>
 #include <stdlib.h>
 #include <time.h>
+#include "Drawing.hpp"
 
 class Game{
     //Screen dimension constants

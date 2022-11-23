@@ -1,6 +1,7 @@
 #include "game.hpp"
 #include "SprintCar.hpp"
 #include "Drawing.hpp"
+#include "button.hpp"
 
 SDL_Renderer* Drawing::gRenderer = NULL;
 SDL_Texture* Drawing::assets = NULL;
@@ -65,15 +66,9 @@ bool Game::loadMedia()
 {
 	//Loading success flag
 	bool success = true;
-<<<<<<< HEAD
-
-	Drawing::assets = loadTexture("./assets/cursor.jpg");
-	Drawing::assets = loadTexture("./assets/redcar.png");
-=======
 	
-	Drawing::assets = loadTexture("./assets/policecar.png");
->>>>>>> f94fd06ca8cc937f9ad6bbc394a9bc990ee546c8
-    gTexture = loadTexture("./assets/road.png");
+	Drawing::assets = loadTexture("spritesheet.png");
+    gTexture = loadTexture("smthng.gif");
 	if(Drawing::assets==NULL || gTexture==NULL)
     {
         printf("Unable to run due to error: %s\n",SDL_GetError());
@@ -131,28 +126,23 @@ void Game::run( )
 	SDL_Event e;
 
 	SprintCar sprintcar;
-	// mouse m;
-	// button play;
+	 Mouse m;
+	 button play;
+	 button exit;
 
 	sprintcar.CreateObject();
 	while( !quit )
 	{
-<<<<<<< HEAD
-		//m.update();
+		m.update();
 		//Handle events on queue
 		while( SDL_PollEvent( &e ) != 0 )
 		{
 			sprintcar.CreateObject();
-			m.draw();
-			play.draw();
-=======
-		// m.update();
 		
 		//Handle events on queue
 		while( SDL_PollEvent( &e ) != 0 )
 		{
 			
->>>>>>> f94fd06ca8cc937f9ad6bbc394a9bc990ee546c8
 			//User requests quit
 			if( e.type == SDL_QUIT )
 			{
@@ -169,17 +159,15 @@ void Game::run( )
 		SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);//Draws background to renderer
 		//***********************draw the objects here********************
 
-		sprintcar.DrawObject();
-<<<<<<< HEAD
-		//m.draw();
-=======
-		// m.draw();
->>>>>>> f94fd06ca8cc937f9ad6bbc394a9bc990ee546c8
-
+		//sprintcar.DrawObject();
+		play.draw(703,49,396, 163, 150, 380, 200, 50);
+		exit.draw(1584,27,292,159, 150, 450, 210,50);
+		m.draw();
 		//****************************************************************
     	SDL_RenderPresent(Drawing::gRenderer); //displays the updated renderer
 
 	    SDL_Delay(100);	//causes sdl engine to delay for specified miliseconds
 	}
 			
+}
 }

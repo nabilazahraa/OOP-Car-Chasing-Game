@@ -1,29 +1,18 @@
-<<<<<<< HEAD
 #include <SDL.h>
-#include <iostream>
-#include "game.hpp"
+#include <SDL_image.h>
 #include "Drawing.hpp"
-using namespace std;
-=======
-// #include <SDL.h>
-// #include <iostream>
-// #include "game.hpp"
-// using namespace std;
->>>>>>> f94fd06ca8cc937f9ad6bbc394a9bc990ee546c8
 
-// class Mouse{
-//     public:
-//     SDL_Texture *tex;
-//     SDL_Rect rect;
-//     SDL_Rect point;
 
-//     Mouse();
+class Mouse{
+    public:
+    // SDL_Texture *tex;
+    SDL_Rect sprite = {62,28,249,272};
+    SDL_Rect rect;
+    SDL_Rect point;
 
-<<<<<<< HEAD
-    void update(); 
-=======
-//     void update();
->>>>>>> f94fd06ca8cc937f9ad6bbc394a9bc990ee546c8
+    Mouse();
 
-//     void draw();
-// };
+    void update();
+
+    void draw();
+};

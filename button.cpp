@@ -1,70 +1,29 @@
-// #include "button.hpp"
+#include "button.hpp"
 
-<<<<<<< HEAD
 button::button()
 {
-    //static SDL_Texture *t = IMG_loadTexture(gWindow, "spritesheet")
-    //tex = t;
-    // srect.h = 100; //sprite sheet value
-    // srect.w = 400;
-    // srect.x = 0;
-=======
-// button::button()
-// {
-//     static SDL_Texture *t = IMG_loadTexture(gRenderer, "spritesheet")
-//     tex = t;
-//     srect.h = 100; //sprite sheet value
-//     srect.w = 400;
-//     srect.x = 0;
->>>>>>> f94fd06ca8cc937f9ad6bbc394a9bc990ee546c8
-
-//     drect.h = 75;
-//     drect.w = 300;
-
-// }
-
-// button::~button()
-// {
-
-// }
-
-<<<<<<< HEAD
-void button::update(Mouse& mouse)
-{
-    if(SDL_HasIntersection(&drect, &mouse.point))
-    {
-        isSelected = true;
-        //srect.x = 400;
-
-    }
-    else{
-        isSelected = false;
-        //srect.x = 0;
-    }
+    rect.x = 150;
+    rect.y = 380;
+    rect.h = 50;
+    rect.w = 200;
 }
 
-void button::draw()
+button::~button()
 {
-    srect = sprite;
-    SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srect, &drect);
+
 }
-=======
-// void button::update(Mouse& mouse)
-// {
-//     if(SDL_HasIntersection(&drect, &mouse.point))
-//     {
-//         isSelected = true;
-//         srect.x = 400;
 
-//     }
-//     else{
-//         isSelected = false;
-//         srect.x = 0;
-//     }
-// }
+void button::draw(int x1, int y1, int w1, int h1, int xr, int yr, int wr, int hr)
+{
+    rect.x = xr;
+    rect.y = yr;
+    rect.h = hr;
+    rect.w = wr;
 
-// void button::draw()
-// {
-//     SDL_RenderCopy(gRenderer,tex,&srect,&drect);
-// }
->>>>>>> f94fd06ca8cc937f9ad6bbc394a9bc990ee546c8
+    sprite.x = x1;
+    sprite.y= y1;
+    sprite.w = w1;
+    sprite.h = h1;
+
+    SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &sprite, &rect);
+}
