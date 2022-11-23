@@ -40,7 +40,7 @@ bool button::handleEvent(SDL_Event* e)
         {
             selected = false;
         }
-        if(x>rect.x +rect.w || y>rect.y +rect.h)
+        else if(x>=rect.x +rect.w || y>=rect.y +rect.h)
         {
             selected = false;
         }
