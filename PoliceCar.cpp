@@ -4,7 +4,7 @@
 
  PoliceCar::PoliceCar()
  {
-    moverRect = {210,100, 90, 150};
+    moverRect = {310,100, 70, 80};
     speed = 5;
  };
 void PoliceCar::Draw()

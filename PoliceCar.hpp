@@ -7,7 +7,7 @@ class PoliceCar: public car{
     private:
     int speed;
     SDL_Rect srcRect, moverRect;
-    SDL_Rect sprite = {15,27, 139,256};
+    SDL_Rect sprite = {1351,27, 139,256};
 
     public:
     PoliceCar();

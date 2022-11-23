@@ -4,5 +4,5 @@
 // class ThunderBolt
 // {
 //     SDL_Rect srcRect, moverRect;
-//     SDL_Rect sprite;
+//     SDL_Rect sprite = {2917,1,107,194};
 // };
