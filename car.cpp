@@ -1,6 +1,6 @@
 #include "car.hpp"
 
-void car::draw()
-{
+// void car::draw()
+// {
     
-};
+// };
