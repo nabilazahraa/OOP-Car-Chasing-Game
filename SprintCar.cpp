@@ -15,14 +15,14 @@ void SprintCar::CreateObject()
     // if(choice ==1){
     
      //sportscar
-    // h = new heroCar(1199,39,101,274);
+    // h = new heroCar(1199,39,101,174);
     // }
 
     //bike 
-    // h = new heroCar(1861,57,189,541) ;
+    h = new heroCar(1861,57,189,541) ;
 
     //truck
-    h = new heroCar(1552,0,219,410) ;
+    // h = new heroCar(1552,0,219,410) ;
 
     //police car
 
@@ -37,6 +37,6 @@ void SprintCar::DrawObject()
 }
 void SprintCar::move(SDL_Keycode key)
 {
-     h->Drive(Drawing::gRenderer,Drawing::assets, key);
+    h->Drive(Drawing::gRenderer,Drawing::assets, key);
     p->Drive(Drawing::gRenderer,Drawing::assets, key);
 }
