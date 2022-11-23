@@ -10,7 +10,7 @@ class SprintCar{
     public:
     
     heroCar *h;
-    PoliceCar *p;
+    // PoliceCar *p;
 
 
     

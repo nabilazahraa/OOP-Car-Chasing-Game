@@ -1,6 +1,7 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 #include <stdio.h>
 #include <iostream>
 #include <string>
@@ -15,6 +16,7 @@ class Game{
     const int SCREEN_WIDTH = 1500;
     const int SCREEN_HEIGHT = 810;
     string img = "smthng.gif";
+    Mix_Music* gMusic = NULL;
     //The window we'll be rendering to
     SDL_Window* gWindow = NULL;
 

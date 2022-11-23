@@ -2,15 +2,22 @@
 #include "SprintCar.hpp"
 #include "Drawing.hpp"
 #include "button.hpp"
+#include <SDL_Mixer.h>
 
 SDL_Renderer* Drawing::gRenderer = NULL;
 SDL_Texture* Drawing::assets = NULL;
+
 
 bool Game::init()
 {
 	//Initialization flag
 	bool success = true;
 
+	if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+	{
+		printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
+		success = false;
+	}
 
 	//Initialize SDL
 	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
@@ -25,7 +32,7 @@ bool Game::init()
 		{
 			printf( "Warning: Linear texture filtering not enabled!" );
 		}
-
+		
 		//Create window
 		gWindow = SDL_CreateWindow( "Sprint Car Derby", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
 		if( gWindow == NULL )
@@ -54,6 +61,7 @@ bool Game::init()
 					printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
 					success = false;
 				}
+				
 
 			}
 		}
@@ -74,6 +82,12 @@ bool Game::loadMedia()
         printf("Unable to run due to error: %s\n",SDL_GetError());
         success =false;
     }
+	gMusic = Mix_LoadMUS( "Animals.wav" );
+    if( gMusic == NULL )
+    {
+        printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
+        success = false;
+    }
 	return success;
 }
 
@@ -89,7 +103,10 @@ void Game::close()
 	SDL_DestroyWindow( gWindow );
 	gWindow = NULL;
 	Drawing::gRenderer = NULL;
+
+	Mix_FreeMusic(gMusic);
 	//Quit SDL subsystems
+	Mix_Quit();
 	IMG_Quit();
 	SDL_Quit();
 }
@@ -134,6 +151,7 @@ void Game::run( )
 	while( !quit )
 	{
 		m.update();
+		
 		//Handle events on queue
 		while( SDL_PollEvent( &e ) != 0 )
 		{
@@ -158,6 +176,7 @@ void Game::run( )
 				if(exit.handleEvent(&e) ==true)
 				{
 					close();
+					quit = true;
 				}
 			}
 		}
@@ -169,9 +188,16 @@ void Game::run( )
 		if(img =="./assets/road.png")
 		{
 		sprintcar.DrawObject();
+		
+		Mix_PauseMusic();
 		}
 		if(img =="smthng.gif")
 		{
+			if( Mix_PlayingMusic() == 0 )
+			{
+				//Play the music
+				Mix_PlayMusic( gMusic, -1 );
+			}
 		play.draw(360,25,204,83, 150, 500, 200, 50);
 		exit.draw(619,14,145,82, 150, 580, 210,50);
 		}
