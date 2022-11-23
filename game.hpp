@@ -7,12 +7,14 @@
 #include <stdlib.h>
 #include <time.h>
 #include "Drawing.hpp"
+using namespace std;
+
 
 class Game{
     //Screen dimension constants
     const int SCREEN_WIDTH = 1500;
     const int SCREEN_HEIGHT = 810;
-
+    string img = "smthng.gif";
     //The window we'll be rendering to
     SDL_Window* gWindow = NULL;
 

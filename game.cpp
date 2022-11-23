@@ -68,7 +68,7 @@ bool Game::loadMedia()
 	bool success = true;
 	
 	Drawing::assets = loadTexture("spritesheet.png");
-    gTexture = loadTexture("./assets/road.png");
+    gTexture = loadTexture(img);
 	if(Drawing::assets==NULL || gTexture==NULL)
     {
         printf("Unable to run due to error: %s\n",SDL_GetError());
@@ -127,7 +127,7 @@ void Game::run( )
 
 	SprintCar sprintcar;
 	//  Mouse m;
-	//  button play;
+	 button play;
 	//  button exit;
 
 	sprintcar.CreateObject();
@@ -137,8 +137,7 @@ void Game::run( )
 		//Handle events on queue
 		while( SDL_PollEvent( &e ) != 0 )
 		{
-			//Handle events on queue
-		
+			
 			//User requests quit
 			if( e.type == SDL_QUIT )
 			{
@@ -149,15 +148,28 @@ void Game::run( )
 			{
 				sprintcar.move(e.key.keysym.sym);
 			}
+			if(e.type == SDL_MOUSEBUTTONDOWN)
+			{
+				if(play.handleEvent(&e) ==true)
+				{
+				img ="./assets/road.png";
+				loadMedia();
+				}
+			}
 		}
 
 		SDL_RenderClear(Drawing::gRenderer); //removes everything from renderer
 		SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);//Draws background to renderer
 		//***********************draw the objects here********************
 
+		if(img =="./assets/road.png")
+		{
 		sprintcar.DrawObject();
-		
-		// play.draw(360,25,204,83, 150, 500, 200, 50);
+		}
+		if(img =="smthng.gif")
+		{
+		play.draw(360,25,204,83, 150, 500, 200, 50);
+		}
 		// exit.draw(619,14,145,82, 150, 580, 210,50);
 		// m.draw();
 
