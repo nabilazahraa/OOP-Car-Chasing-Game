@@ -126,14 +126,14 @@ void Game::run( )
 	SDL_Event e;
 
 	SprintCar sprintcar;
-	//  Mouse m;
+	 Mouse m;
 	 button play;
-	//  button exit;
+	 button exit;
 
 	sprintcar.CreateObject();
 	while( !quit )
 	{
-		// m.update();
+		m.update();
 		//Handle events on queue
 		while( SDL_PollEvent( &e ) != 0 )
 		{
@@ -155,6 +155,10 @@ void Game::run( )
 				img ="./assets/road.png";
 				loadMedia();
 				}
+				if(exit.handleEvent(&e) ==true)
+				{
+					close();
+				}
 			}
 		}
 
@@ -169,9 +173,10 @@ void Game::run( )
 		if(img =="smthng.gif")
 		{
 		play.draw(360,25,204,83, 150, 500, 200, 50);
+		exit.draw(619,14,145,82, 150, 580, 210,50);
 		}
-		// exit.draw(619,14,145,82, 150, 580, 210,50);
-		// m.draw();
+		
+		m.draw();
 
 		//****************************************************************
     	SDL_RenderPresent(Drawing::gRenderer); //displays the updated renderer
