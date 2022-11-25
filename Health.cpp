@@ -12,6 +12,7 @@ void Health::Draw()
      SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
 }
 
+//operator overloading can be done for lives
 void Health::DecreaseLife()
 {
     lives -=1;

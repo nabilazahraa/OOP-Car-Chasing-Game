@@ -2,11 +2,8 @@
 #include "SprintCar.hpp"
 using namespace std;
 
-void SprintCar::CreateObject(int choice)
+void SprintCar::CreateHero(int choice)
 {
-    // h.Draw();
-    
-
     //select option 
     //if 1,2,3 selected make herocar according to that
 
@@ -25,9 +22,12 @@ void SprintCar::CreateObject(int choice)
     {
     h = new heroCar(1337,0,219,410) ;
     }
-    //police car
+    
+}
 
-    // p =  new PoliceCar;
+void SprintCar::CreatePolice()
+{
+    p = new PoliceCar();
 }
 
 void SprintCar::DrawObject()

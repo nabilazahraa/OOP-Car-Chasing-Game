@@ -4,8 +4,8 @@
 
 Fire::Fire()
 {
-    moverRect = {390,590, 50, 100};
-    alive ==true;
+    moverRect = {390,590, 50, 80};
+    alive ==false;
 }
 void Fire::Draw()
 {
@@ -24,7 +24,7 @@ void Fire::Draw()
 void Fire::update(SDL_Rect car)
 {
     moverRect.x = car.x + 20;
-    moverRect.y = car.y - 20;
+    moverRect.y = car.y - 70;
 }
 
 void Fire::Shoot()
