@@ -2,7 +2,12 @@
 #include "SprintCar.hpp"
 #include "Drawing.hpp"
 #include "button.hpp"
+#include "Fire.hpp"
 #include <SDL_Mixer.h>
+#include <list>
+#include <vector>
+#include "Health.hpp"
+using namespace std;
 
 SDL_Renderer* Drawing::gRenderer = NULL;
 SDL_Texture* Drawing::assets = NULL;
@@ -143,11 +148,20 @@ void Game::run( )
 	SDL_Event e;
 
 	SprintCar sprintcar;
-	 Mouse m;
-	 button play;
-	 button exit;
+	Mouse m;
+	
+	button play;
+	button rules;
+	button exit;
 
-	sprintcar.CreateObject();
+	button car1;
+	button car2;
+	button car3;
+
+	Fire *fr = new Fire();
+	Health h;
+
+	
 	while( !quit )
 	{
 		m.update();
@@ -157,6 +171,7 @@ void Game::run( )
 		{
 			
 			//User requests quit
+		
 			if( e.type == SDL_QUIT )
 			{
 				quit = true;
@@ -164,13 +179,24 @@ void Game::run( )
 
 			if(e.type == SDL_KEYDOWN)
 			{
+				if(e.key.keysym.sym == SDLK_SPACE)
+				{
+					fr->alive = true;
+					SDL_Rect moverRect = sprintcar.h->getRect();
+					fr->update(moverRect);
+				} 
+					
 				sprintcar.move(e.key.keysym.sym);
+				
+				
 			}
 			if(e.type == SDL_MOUSEBUTTONDOWN)
 			{
 				if(play.handleEvent(&e) ==true)
 				{
-				img ="./assets/road.png";
+				img ="choose.gif";
+				// img =="./assets/road.png";
+
 				loadMedia();
 				}
 				if(exit.handleEvent(&e) ==true)
@@ -178,7 +204,27 @@ void Game::run( )
 					close();
 					quit = true;
 				}
+				if(car1.handleEvent(&e) ==true)
+				{
+					img = "./assets/road.png";
+					sprintcar.CreateObject(1);
+					loadMedia();
+				}
+				if(car2.handleEvent(&e) ==true)
+				{
+					img = "./assets/road.png";
+					sprintcar.CreateObject(2);
+					loadMedia();
+				}
+				if(car3.handleEvent(&e) ==true)
+				{
+					img = "./assets/road.png";
+					sprintcar.CreateObject(3);
+					loadMedia();
+				}
 			}
+			
+			
 		}
 
 		SDL_RenderClear(Drawing::gRenderer); //removes everything from renderer
@@ -189,17 +235,40 @@ void Game::run( )
 		{
 		sprintcar.DrawObject();
 		
+		//firing 
+		fr->Draw();
+		fr->Shoot();
+
+		//health
+		h.Draw();
+
 		Mix_PauseMusic();
 		}
-		if(img =="smthng.gif")
-		{
+
+		
 			if( Mix_PlayingMusic() == 0 )
 			{
 				//Play the music
 				Mix_PlayMusic( gMusic, -1 );
 			}
-		play.draw(360,25,204,83, 150, 500, 200, 50);
-		exit.draw(619,14,145,82, 150, 580, 210,50);
+		if(img =="smthng.gif")
+		{
+		play.draw(25,24,189,70, 180, 500, 250, 70);
+		rules.draw(25,111,189,71,180,580,250,70);
+		exit.draw(25,206,189,71, 180, 660, 250,70);
+
+		//back{25,301,189,70}
+		//replay {25,389,189,70}
+
+		//ferrari {278,16,206,198}
+		//ducati {521,15,206,197}
+		//monster truck {415,251,206,197}
+		}
+		if(img == "choose.gif")
+		{
+			car1.draw(278,16,206,198, 200,300,300,300);
+			car2.draw(521,15,206,197, 600,300,300,300);
+			car3.draw(415,251,206,197,1000,300,300,300);
 		}
 		
 		m.draw();

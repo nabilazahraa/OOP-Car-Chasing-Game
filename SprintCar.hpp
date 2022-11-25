@@ -11,10 +11,8 @@ class SprintCar{
     
     heroCar *h;
     // PoliceCar *p;
-
-
     
-    void CreateObject();
+    void CreateObject(int );
     void DrawObject();
     void move(SDL_Keycode key);
 
