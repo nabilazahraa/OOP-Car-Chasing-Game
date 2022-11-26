@@ -15,13 +15,16 @@ class Game{
     //Screen dimension constants
     const int SCREEN_WIDTH = 1200;
     const int SCREEN_HEIGHT = 810;
-    string img = "DERBY.png";
+    string img = "smthng.gif";
     Mix_Music* gMusic = NULL;
     //The window we'll be rendering to
     SDL_Window* gWindow = NULL;
 
+
     //Current displayed texture
     SDL_Texture* gTexture = NULL;
+    int mWidth = 0;
+    int mHeight = 0;
     
 
 public:
@@ -33,4 +36,7 @@ public:
     void close();
     SDL_Texture* loadTexture( std::string path );
     void run();
+    void render(int x, int y);
+    int getWidth();
+    int getHeight();
 };

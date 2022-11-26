@@ -94,7 +94,7 @@ bool Game::loadMedia()
         printf("Unable to run due to error: %s\n",SDL_GetError());
         success =false;
     }
-	gMusic = Mix_LoadMUS( "Animals.wav" );
+	gMusic = Mix_LoadMUS( "tokyo.wav" );
     if( gMusic == NULL )
     {
         printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
@@ -143,18 +143,40 @@ SDL_Texture* Game::loadTexture( std::string path )
 			printf( "Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError() );
 		}
 
+			mWidth = loadedSurface->w;
+            mHeight = loadedSurface->h;
+
 		//Get rid of old loaded surface
 		SDL_FreeSurface( loadedSurface );
 	}
 
 	return newTexture;
 }
-void Game::run( )
+
+// void Game::render( int x, int y )
+// {
+//     //Set rendering space and render to screen
+//     SDL_Rect renderQuad = { x, y, mWidth, mHeight };
+//     SDL_RenderCopy( Drawing::gRenderer, gTexture, NULL, &renderQuad );
+// }
+
+// int Game::getWidth()
+// {
+//     return mWidth;
+// }
+
+// int Game::getHeight()
+// {
+//     return mHeight;
+// }
+
+void Game::run()
 {
 	bool quit = false;
 	SDL_Event e;
 
 	SprintCar sprintcar;
+	int scrollingOffset = 0;
 	Mouse m;
 	
 	button play;
@@ -201,6 +223,7 @@ void Game::run( )
 				sprintcar.move(e.key.keysym.sym);
 				
 				
+				
 			}
 			//click on buttons
 			if(e.type == SDL_MOUSEBUTTONDOWN)
@@ -223,8 +246,9 @@ void Game::run( )
 				if(car1.handleEvent(&e) ==true)
 				{
 					img = "./assets/road.png";
-					sprintcar.CreateHero(1);
 					loadMedia();
+					sprintcar.CreateHero(1);
+
 				}
 				else if(car2.handleEvent(&e) ==true)
 				{
@@ -259,12 +283,30 @@ void Game::run( )
 
 		SDL_RenderClear(Drawing::gRenderer); //removes everything from renderer
 		SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);//Draws background to renderer
+		
 		//***********************draw the objects here********************
 		
 		if(img =="./assets/road.png")
 		{
 		//draw chosencar 
+		scrollingOffset -= 20;
+                	if( scrollingOffset < -SCREEN_HEIGHT)
+                	{
+                    	scrollingOffset = 0;
+                	}
+
+		SDL_Rect renderQuad = { 0, scrollingOffset, SCREEN_WIDTH, SCREEN_HEIGHT };
+    	SDL_RenderCopy( Drawing::gRenderer, gTexture, NULL, &renderQuad);
+		renderQuad = { 0, scrollingOffset + SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT};
+    	SDL_RenderCopy( Drawing::gRenderer, gTexture, NULL, &renderQuad );
+
+
 		sprintcar.DrawObject();
+
+		
+					
+                	//Update screen
+        //SDL_RenderPresent( Drawing::gRenderer );
 		
 		//firing 
 		fr->Draw();
@@ -274,7 +316,8 @@ void Game::run( )
 		h.Draw();
 
 		//stop main screen music
-		Mix_PauseMusic();
+		//Mix_PauseMusic();
+		
 
 		}
 
