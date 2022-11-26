@@ -293,15 +293,15 @@ void Game::run()
 		if(img =="./assets/road.png")
 		{
 		//draw chosencar 
-		scrollingOffset -= 20;
-		if( scrollingOffset < -SCREEN_HEIGHT)
+		scrollingOffset += 30;
+		if( scrollingOffset > SCREEN_HEIGHT)
 		{
 			scrollingOffset = 0;
 		}
-
+		
 		SDL_Rect renderQuad = { 0, scrollingOffset, SCREEN_WIDTH, SCREEN_HEIGHT };
     	SDL_RenderCopy( Drawing::gRenderer, gTexture, NULL, &renderQuad);
-		renderQuad = { 0, scrollingOffset + SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT};
+		renderQuad = { 0, scrollingOffset - SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT};
     	SDL_RenderCopy( Drawing::gRenderer, gTexture, NULL, &renderQuad );
 
 
