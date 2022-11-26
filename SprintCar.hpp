@@ -6,8 +6,6 @@
 #include<vector>
 #include"Bullets.hpp"
 #include<SDL.h>
-
-#include <SDL.h>
 using namespace std;
 
 class SprintCar{
