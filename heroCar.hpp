@@ -3,6 +3,8 @@
 #include <SDL.h>
 #include "Fire.hpp"
 #pragma once
+#include"Bullets.hpp"
+using namespace std;
 
 class heroCar:public car{
     private:
@@ -12,9 +14,8 @@ class heroCar:public car{
     SDL_Rect sprite; 
     Fire* f;
     //sprite value
-    
-    //SDL_Rect sprite ;
-    public:
+    vector<Bullets*> b; 
+  
     
     //Score s;
     //Health h;
