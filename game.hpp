@@ -13,9 +13,9 @@ using namespace std;
 
 class Game{
     //Screen dimension constants
-    const int SCREEN_WIDTH = 1500;
+    const int SCREEN_WIDTH = 1200;
     const int SCREEN_HEIGHT = 810;
-    string img = "smthng.gif";
+    string img = "DERBY.png";
     Mix_Music* gMusic = NULL;
     //The window we'll be rendering to
     SDL_Window* gWindow = NULL;

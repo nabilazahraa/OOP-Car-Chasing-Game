@@ -2,7 +2,14 @@
 #include "SprintCar.hpp"
 #include "Drawing.hpp"
 #include "button.hpp"
+#include "Fire.hpp"
 #include <SDL_Mixer.h>
+#include <list>
+#include <vector>
+#include "Health.hpp"
+#include "Text.hpp"
+
+using namespace std;
 
 SDL_Renderer* Drawing::gRenderer = NULL;
 SDL_Texture* Drawing::assets = NULL;
@@ -12,6 +19,11 @@ bool Game::init()
 {
 	//Initialization flag
 	bool success = true;
+	 if( TTF_Init() == -1 )
+                {
+                    printf( "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError() );
+                    success = false;
+                }
 
 	if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
 	{
@@ -143,11 +155,22 @@ void Game::run( )
 	SDL_Event e;
 
 	SprintCar sprintcar;
-	 Mouse m;
-	 button play;
-	 button exit;
+	Mouse m;
+	
+	button play;
+	button rules;
+	button exit;
 
-	sprintcar.CreateObject();
+	button back;
+
+	button car1;
+	button car2;
+	button car3;
+
+	Fire *fr = new Fire();
+	Health h;
+	Text text(Drawing::gRenderer, "MATURASC.TTF",100, "Sprint Car Derby", {255, 255 ,255 ,255});
+	
 	while( !quit )
 	{
 		m.update();
@@ -157,6 +180,7 @@ void Game::run( )
 		{
 			
 			//User requests quit
+		
 			if( e.type == SDL_QUIT )
 			{
 				quit = true;
@@ -164,42 +188,128 @@ void Game::run( )
 
 			if(e.type == SDL_KEYDOWN)
 			{
+				//shoot fire on space bar
+				if(e.key.keysym.sym == SDLK_SPACE)
+				{
+					fr->alive = true;
+					//update position of fire
+					SDL_Rect moverRect = sprintcar.h->getRect();
+					fr->update(moverRect);
+				} 
+
+				//move the car using arrow keys	
 				sprintcar.move(e.key.keysym.sym);
+				
+				
 			}
+			//click on buttons
 			if(e.type == SDL_MOUSEBUTTONDOWN)
 			{
+				//start game
 				if(play.handleEvent(&e) ==true)
 				{
-				img ="./assets/road.png";
+				img ="choose.gif";
 				loadMedia();
 				}
+
+				//exit game 
 				if(exit.handleEvent(&e) ==true)
 				{
 					close();
 					quit = true;
 				}
+
+				//choosing cars
+				if(car1.handleEvent(&e) ==true)
+				{
+					img = "./assets/road.png";
+					sprintcar.CreateHero(1);
+					loadMedia();
+				}
+				else if(car2.handleEvent(&e) ==true)
+				{
+					img = "./assets/road.png";
+					sprintcar.CreateHero(2);
+					loadMedia();
+				}
+				else if(car3.handleEvent(&e) ==true)
+				{
+					img = "./assets/road.png";
+					sprintcar.CreateHero(3);
+					loadMedia();
+				}
+
+				//show rules screen
+				if(rules.handleEvent(&e) ==true)
+				{
+					img = "rules.png";
+					loadMedia();
+				}
+				//go back from rules screen
+				if(back.handleEvent(&e) ==true)
+				{
+					img = "smthng.gif";
+					
+					loadMedia();
+					
+				}
 			}
+			
 		}
 
 		SDL_RenderClear(Drawing::gRenderer); //removes everything from renderer
 		SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);//Draws background to renderer
 		//***********************draw the objects here********************
-
+		
 		if(img =="./assets/road.png")
 		{
+		//draw chosencar 
 		sprintcar.DrawObject();
 		
+		//firing 
+		fr->Draw();
+		fr->Shoot();
+
+		//health on screen
+		h.Draw();
+
+		//stop main screen music
 		Mix_PauseMusic();
+
 		}
+
+		//play music for main screen
+		if( Mix_PlayingMusic() == 0 )
+		{
+			//Play the music
+			Mix_PlayMusic( gMusic, -1 );
+		}
+
 		if(img =="smthng.gif")
 		{
-			if( Mix_PlayingMusic() == 0 )
-			{
-				//Play the music
-				Mix_PlayMusic( gMusic, -1 );
-			}
-		play.draw(360,25,204,83, 150, 500, 200, 50);
-		exit.draw(619,14,145,82, 150, 580, 210,50);
+		text.display(50,50,Drawing::gRenderer);
+		
+		play.draw(25,24,189,70, 180, 500, 250, 70);
+		rules.draw(25,111,189,71,180,580,250,70);
+		exit.draw(25,206,189,71, 180, 660, 250,70);
+
+		//back{25,301,189,70}
+		//replay {25,389,189,70}
+		}
+
+		if(img == "rules.png")
+		{
+			back.draw(25,301,189,70,20,10,150,70);
+		}
+		
+		if(img == "choose.gif")
+		{
+			//ferrari {278,16,206,198}
+			//ducati {521,15,206,197}
+			//monster truck {415,251,206,197}
+			car1.draw(278,16,206,198, 200,300,300,300);
+			car2.draw(521,15,206,197, 600,300,300,300);
+			car3.draw(415,251,206,197,1000,300,300,300);
 		}
 		
 		m.draw();
@@ -211,4 +321,3 @@ void Game::run( )
 	}
 			
 }
-
