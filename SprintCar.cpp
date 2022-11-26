@@ -41,6 +41,7 @@ void SprintCar::DrawObject()
     h->Draw();
 }
 
+//draw police car and normal car
 void SprintCar::DrawCars()
 {
     p->Draw();
@@ -58,6 +59,7 @@ void SprintCar::move(SDL_Keycode key)
     
 }
 
+//move police car and normal car
 void SprintCar::moveCars()
 {
     p->Drive(Drawing::gRenderer,Drawing::assets);

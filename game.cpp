@@ -177,7 +177,7 @@ void Game::run()
 	button car2;
 	button car3;
 
-	Fire *fr = new Fire();
+	// Fire *fr = new Fire();
 	Health h;
 	Text text(Drawing::gRenderer, "MATURASC.TTF",100, "Sprint Car Derby", {255, 255 ,255 ,255});
 	std::string timeText;
@@ -204,10 +204,10 @@ void Game::run()
 				//shoot fire on space bar
 				if(e.key.keysym.sym == SDLK_SPACE)
 				{
-					fr->alive = true;
+					// fr->alive = true;
 					//update position of fire
-					SDL_Rect moverRect = sprintcar.h->getRect();
-					fr->update(moverRect);
+					// SDL_Rect moverRect = sprintcar.h->getRect();
+					// fr->update(moverRect);
 				} 
 				
 				//move the car using arrow keys	
@@ -289,6 +289,7 @@ void Game::run()
 		
 		if(img =="./assets/road.png")
 		{
+			//create police
 			sprintcar.CreatePolice();
 
 			scrollingOffset += 30;
@@ -323,11 +324,13 @@ void Game::run()
 			}
 			//draw chosencar 
 			sprintcar.DrawObject();
+			//draw police, normal
 			sprintcar.DrawCars();
-			sprintcar.moveCars();		
+			sprintcar.moveCars();	
+
 			//firing 
-			fr->Draw();
-			fr->Shoot();
+			// fr->Draw();
+			// fr->Shoot();
 
 			//health on screen
 			h.Draw();
