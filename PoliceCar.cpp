@@ -15,7 +15,8 @@ void PoliceCar::Draw()
 PoliceCar::PoliceCar()
  {
     int r=140+(rand()%550);
-    moverRect = {r,-65, 40, 70};
+    moverRect = {r,65, 40, 70};
+    
  };
 void PoliceCar::Drive(SDL_Renderer* gRenderer, SDL_Texture* assets)
 {
@@ -25,7 +26,7 @@ void PoliceCar::Drive(SDL_Renderer* gRenderer, SDL_Texture* assets)
     random=rand()%2;
     if(random==0)
     {
-        if(moverRect.x<680)
+        if(moverRect.x<150)
         moverRect.x+=random2;
         else
         moverRect.x-=random2;

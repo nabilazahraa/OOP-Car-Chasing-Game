@@ -22,11 +22,8 @@ void SprintCar::CreateHero(int choice)
     {
     h = new heroCar(1337,0,219,410) ;
     }
-    
-}
 
-void SprintCar::CreatePolice()
-{
+    //police car and normal car should have a different function
     p = new PoliceCar();
     if (count%2==0)
     {
@@ -34,27 +31,26 @@ void SprintCar::CreatePolice()
         n.push_back(norm);
     }
     count++;
+    
 }
+
 
 void SprintCar::DrawObject()
 {
     h->Draw();
-}
-
-//draw police car and normal car
-void SprintCar::DrawCars()
-{
     p->Draw();
     for(int i=0;i<n.size();i++)
     {
         n[i]->Draw();
     }
 }
+
+
 void SprintCar::move(SDL_Keycode key)
 {
-    if(key == SDLK_LEFT || key == SDLK_RIGHT ||key == SDLK_UP ||key== SDLK_DOWN)
+    if(key == SDLK_LEFT || key == SDLK_RIGHT ||key == SDLK_UP ||key== SDLK_DOWN ||key == SDLK_b)
     {
-    h->Drive(Drawing::gRenderer,Drawing::assets, key);
+        h->Drive(Drawing::gRenderer,Drawing::assets, key);
     }
     
 }

@@ -289,8 +289,6 @@ void Game::run()
 		
 		if(img =="./assets/road.png")
 		{
-			//create police
-			sprintcar.CreatePolice();
 
 			scrollingOffset += 30;
 			if( scrollingOffset > SCREEN_HEIGHT)
@@ -324,8 +322,8 @@ void Game::run()
 			}
 			//draw chosencar 
 			sprintcar.DrawObject();
-			//draw police, normal
-			sprintcar.DrawCars();
+			
+			//move police and normal cars
 			sprintcar.moveCars();	
 
 			//firing 

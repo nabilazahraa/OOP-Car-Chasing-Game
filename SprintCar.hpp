@@ -19,7 +19,5 @@ class SprintCar{
     void CreateHero(int );
     void DrawObject();
     void move(SDL_Keycode key);
-    void CreatePolice();
-    void DrawCars();
     void moveCars();
 };

@@ -21,7 +21,7 @@ void NormalCar::Draw()
 NormalCar::NormalCar()
 {
     int r=140+(rand()%550);
-    moverRect={r,-25, 50, 70};
+    moverRect={r,25, 50, 70};
 }
 void NormalCar::Drive(SDL_Renderer* gRenderer, SDL_Texture* assets)
 {
