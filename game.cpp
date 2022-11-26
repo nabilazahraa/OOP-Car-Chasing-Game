@@ -210,9 +210,6 @@ void Game::run()
 					fr->update(moverRect);
 				} 
 				
-					
-				
-				
 				//move the car using arrow keys	
 				sprintcar.move(e.key.keysym.sym);
 			
@@ -238,33 +235,33 @@ void Game::run()
 				//choosing cars
 				if(img =="choose.gif")
 				{
-				if(car1.handleEvent(&e) ==true)
-				{
-					img = "./assets/road.png";
-					loadMedia();
-					sprintcar.CreateHero(1);
+					if(car1.handleEvent(&e) ==true)
+					{
+						img = "./assets/road.png";
+						loadMedia();
+						sprintcar.CreateHero(1);
 
-					
-					cout<<"timer started";
-					timer.start();
-					
-				}
-				else if(car2.handleEvent(&e) ==true)
-				{
-					img = "./assets/road.png";
-					sprintcar.CreateHero(2);
-					loadMedia();
-					cout<<"timer started";
-					timer.start();
-				}
-				else if(car3.handleEvent(&e) ==true)
-				{
-					img = "./assets/road.png";
-					sprintcar.CreateHero(3);
-					loadMedia();
-					cout<<"timer started";
-					timer.start();
-				}
+						
+						cout<<"timer started";
+						timer.start();
+						
+					}
+					else if(car2.handleEvent(&e) ==true)
+					{
+						img = "./assets/road.png";
+						sprintcar.CreateHero(2);
+						loadMedia();
+						cout<<"timer started";
+						timer.start();
+					}
+					else if(car3.handleEvent(&e) ==true)
+					{
+						img = "./assets/road.png";
+						sprintcar.CreateHero(3);
+						loadMedia();
+						cout<<"timer started";
+						timer.start();
+					}
 				}
 
 				//show rules screen
@@ -292,52 +289,52 @@ void Game::run()
 		
 		if(img =="./assets/road.png")
 		{
-		//draw chosencar 
-		scrollingOffset += 30;
-		if( scrollingOffset > SCREEN_HEIGHT)
-		{
-			scrollingOffset = 0;
-		}
-		
-		SDL_Rect renderQuad = { 0, scrollingOffset, SCREEN_WIDTH, SCREEN_HEIGHT };
-    	SDL_RenderCopy( Drawing::gRenderer, gTexture, NULL, &renderQuad);
-		renderQuad = { 0, scrollingOffset - SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT};
-    	SDL_RenderCopy( Drawing::gRenderer, gTexture, NULL, &renderQuad );
+			sprintcar.CreatePolice();
 
-
-		 timeText = "Time: " + to_string(timer.getTicks()/60000)+ " : " + to_string( timer.getTicks() / 1000 ) ; 
-	
-		Text timetxt(Drawing::gRenderer, "MATURASC.TTF",20, timeText, {255, 255 ,255 ,255});
-		timetxt.display(1320,750,Drawing::gRenderer);
-
-		if(timer.getTicks()>= 120000)
-		{
-			timer.stop();
-			img = "smthng.gif"; //game won screen
-
-			loadMedia();
-		}
-
-		if(timer.getTicks() >= 118000)
-		{
-			line.draw();
-			line.move();
-		}
-		sprintcar.DrawObject();
+			scrollingOffset += 30;
+			if( scrollingOffset > SCREEN_HEIGHT)
+			{
+				scrollingOffset = 0;
+			}
 			
-        //Update screen
-        //SDL_RenderPresent( Drawing::gRenderer );
+			SDL_Rect renderQuad = { 0, scrollingOffset, SCREEN_WIDTH, SCREEN_HEIGHT };
+			SDL_RenderCopy( Drawing::gRenderer, gTexture, NULL, &renderQuad);
+			renderQuad = { 0, scrollingOffset - SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT};
+			SDL_RenderCopy( Drawing::gRenderer, gTexture, NULL, &renderQuad );
+
+
+			timeText = "Time: " + to_string(timer.getTicks()/60000)+ " : " + to_string( timer.getTicks() / 1000 ) ; 
 		
-		//firing 
-		fr->Draw();
-		fr->Shoot();
+			Text timetxt(Drawing::gRenderer, "MATURASC.TTF",20, timeText, {255, 255 ,255 ,255});
+			timetxt.display(1320,750,Drawing::gRenderer);
 
-		//health on screen
-		h.Draw();
+			if(timer.getTicks()>= 120000)
+			{
+				timer.stop();
+				img = "smthng.gif"; //game won screen
 
-		//stop main screen music
-		//Mix_PauseMusic();
-	
+				loadMedia();
+			}
+
+			if(timer.getTicks() >= 118000)
+			{
+				line.draw();
+				line.move();
+			}
+			//draw chosencar 
+			sprintcar.DrawObject();
+			sprintcar.DrawCars();
+			sprintcar.moveCars();		
+			//firing 
+			fr->Draw();
+			fr->Shoot();
+
+			//health on screen
+			h.Draw();
+
+			//stop main screen music
+			//Mix_PauseMusic();
+			// Mix_VolumeMusic(40);
 		}
 
 		//play music for main screen
@@ -349,11 +346,11 @@ void Game::run()
 
 		if(img =="smthng.gif")
 		{
-		text.display(50,50,Drawing::gRenderer);
-		
-		play.draw(25,24,189,70, 180, 500, 250, 70);
-		rules.draw(25,111,189,71,180,580,250,70);
-		exit.draw(25,206,189,71, 180, 660, 250,70);
+			text.display(50,50,Drawing::gRenderer);
+			
+			play.draw(25,24,189,70, 180, 500, 250, 70);
+			rules.draw(25,111,189,71,180,580,250,70);
+			exit.draw(25,206,189,71, 180, 660, 250,70);
 
 		//back{25,301,189,70}
 		//replay {25,389,189,70}

@@ -39,6 +39,10 @@ void SprintCar::CreatePolice()
 void SprintCar::DrawObject()
 {
     h->Draw();
+}
+
+void SprintCar::DrawCars()
+{
     p->Draw();
     for(int i=0;i<n.size();i++)
     {
@@ -51,11 +55,14 @@ void SprintCar::move(SDL_Keycode key)
     {
     h->Drive(Drawing::gRenderer,Drawing::assets, key);
     }
-    p->Drive(Drawing::gRenderer,Drawing::assets, key);
+    
+}
+
+void SprintCar::moveCars()
+{
+    p->Drive(Drawing::gRenderer,Drawing::assets);
     for(int i=0;i<n.size();i++)
     {
-        n[i]->Drive(Drawing::gRenderer,Drawing::assets, key);
+        n[i]->Drive(Drawing::gRenderer,Drawing::assets);
     }
-    
-    // p->Drive(Drawing::gRenderer,Drawing::assets, key);
 }

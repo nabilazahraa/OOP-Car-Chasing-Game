@@ -23,7 +23,7 @@ NormalCar::NormalCar()
     int r=140+(rand()%550);
     moverRect={r,-25, 50, 70};
 }
-void NormalCar::Drive(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycode key)
+void NormalCar::Drive(SDL_Renderer* gRenderer, SDL_Texture* assets)
 {
     moverRect.y+=20;
     if(moverRect.y>=650)

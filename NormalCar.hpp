@@ -9,12 +9,12 @@ class NormalCar: public car
     private:
         int speed;
         SDL_Rect srcRect, moverRect;
-        SDL_Rect sprite1={2472,22,125,231};
-        SDL_Rect sprite2={3122,16,114,279};
-        SDL_Rect sprite3={3251,30,123,231};
+        SDL_Rect sprite1={2738,22,125,231};
+        SDL_Rect sprite2={2907,16,114,279};
+        SDL_Rect sprite3={3036,30,123,231};
         int random=rand()%3;
     public:
         NormalCar();
         void Draw();
-        void Drive(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycode key);
+        void Drive(SDL_Renderer* gRenderer, SDL_Texture* assets);
 };

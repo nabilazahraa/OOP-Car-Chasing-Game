@@ -2,7 +2,7 @@
 #include "Bullets.hpp"
 #include<iostream>
 #include"Drawing.hpp"
-#include<Sdl.h>
+#include<SDL.h>
 #include"heroCar.hpp"
 
 void Bullets::Draw(char x)
