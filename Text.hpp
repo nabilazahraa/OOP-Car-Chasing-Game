@@ -14,6 +14,8 @@ class Text
 
     public:
     Text(SDL_Renderer *renderer, const string &fontPath, int fontSize, const string &text, const SDL_Color &color);
+   // Text(SDL_Renderer *renderer, const string &fontPath, int fontSize, const stringstream &text, const SDL_Color &color);
+
     void display(int x, int y, SDL_Renderer * renderer)const;
     static SDL_Texture* loadFont(SDL_Renderer * renderer,const string &fontPath,int fontSize,const string &text, const SDL_Color &color);
     // ~Text();

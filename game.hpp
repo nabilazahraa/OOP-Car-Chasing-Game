@@ -13,7 +13,7 @@ using namespace std;
 
 class Game{
     //Screen dimension constants
-    const int SCREEN_WIDTH = 1200;
+    const int SCREEN_WIDTH = 1500;
     const int SCREEN_HEIGHT = 810;
     string img = "smthng.gif";
     Mix_Music* gMusic = NULL;

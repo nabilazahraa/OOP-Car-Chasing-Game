@@ -1,31 +1,34 @@
-// #include <SDL.h>
-// #include <iostream>
-// #pragma once
+#include <SDL.h>
+#include <iostream>
+#pragma once
 
-// class Timer
-// {
-//     private:
-//     static Timer* sInstance;
-//     unsigned int mStartTicks;
-//     unsigned int mElaspsedTicks;
-//     float mDeltaTime;
-//     float mTimeScale;
+class Timer
+{
+    public:
+        //Initializes variables
+        Timer();
 
-//     public:
-//     static Timer* Instance();
-//     static void Release(); 
+        //The various clock actions
+        void start();
+        void stop();
+        // void pause();
+        // void unpause();
 
-//     void Reset();
-//     float DeltaTime();
+        //Gets the timer's time
+        Uint32 getTicks();
 
-//     void TimeScale(float t);
-//     float TimeScale();
+        //Checks the status of the timer
+        bool isStarted();
+        // bool isPaused();
 
-//     void update();
+    private:
+        //The clock time when the timer started
+        Uint32 mStartTicks;
 
-//     private:
-//     Timer();
-//     ~Timer();   
+        //The ticks stored when the timer was paused
+        Uint32 mPausedTicks;
 
-
-// };
+        //The timer status
+        bool mPaused;
+        bool mStarted;
+};

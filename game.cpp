@@ -8,6 +8,10 @@
 #include <vector>
 #include "Health.hpp"
 #include "Text.hpp"
+#include "Timer.hpp"
+#include <string>
+#include <sstream>
+#include "finish.hpp"
 
 using namespace std;
 
@@ -153,28 +157,12 @@ SDL_Texture* Game::loadTexture( std::string path )
 	return newTexture;
 }
 
-// void Game::render( int x, int y )
-// {
-//     //Set rendering space and render to screen
-//     SDL_Rect renderQuad = { x, y, mWidth, mHeight };
-//     SDL_RenderCopy( Drawing::gRenderer, gTexture, NULL, &renderQuad );
-// }
-
-// int Game::getWidth()
-// {
-//     return mWidth;
-// }
-
-// int Game::getHeight()
-// {
-//     return mHeight;
-// }
 
 void Game::run()
 {
 	bool quit = false;
 	SDL_Event e;
-
+	Timer timer;
 	SprintCar sprintcar;
 	int scrollingOffset = 0;
 	Mouse m;
@@ -192,6 +180,9 @@ void Game::run()
 	Fire *fr = new Fire();
 	Health h;
 	Text text(Drawing::gRenderer, "MATURASC.TTF",100, "Sprint Car Derby", {255, 255 ,255 ,255});
+	std::string timeText;
+	finishLine line;
+   
 	
 	while( !quit )
 	{
@@ -218,17 +209,19 @@ void Game::run()
 					SDL_Rect moverRect = sprintcar.h->getRect();
 					fr->update(moverRect);
 				} 
-
+				
+					
+				
+				
 				//move the car using arrow keys	
 				sprintcar.move(e.key.keysym.sym);
-				
-				
-				
+			
 			}
 			//click on buttons
 			if(e.type == SDL_MOUSEBUTTONDOWN)
 			{
 				//start game
+				
 				if(play.handleEvent(&e) ==true)
 				{
 				img ="choose.gif";
@@ -241,26 +234,37 @@ void Game::run()
 					close();
 					quit = true;
 				}
-
+				
 				//choosing cars
+				if(img =="choose.gif")
+				{
 				if(car1.handleEvent(&e) ==true)
 				{
 					img = "./assets/road.png";
 					loadMedia();
 					sprintcar.CreateHero(1);
 
+					
+					cout<<"timer started";
+					timer.start();
+					
 				}
 				else if(car2.handleEvent(&e) ==true)
 				{
 					img = "./assets/road.png";
 					sprintcar.CreateHero(2);
 					loadMedia();
+					cout<<"timer started";
+					timer.start();
 				}
 				else if(car3.handleEvent(&e) ==true)
 				{
 					img = "./assets/road.png";
 					sprintcar.CreateHero(3);
 					loadMedia();
+					cout<<"timer started";
+					timer.start();
+				}
 				}
 
 				//show rules screen
@@ -290,10 +294,10 @@ void Game::run()
 		{
 		//draw chosencar 
 		scrollingOffset -= 20;
-                	if( scrollingOffset < -SCREEN_HEIGHT)
-                	{
-                    	scrollingOffset = 0;
-                	}
+		if( scrollingOffset < -SCREEN_HEIGHT)
+		{
+			scrollingOffset = 0;
+		}
 
 		SDL_Rect renderQuad = { 0, scrollingOffset, SCREEN_WIDTH, SCREEN_HEIGHT };
     	SDL_RenderCopy( Drawing::gRenderer, gTexture, NULL, &renderQuad);
@@ -301,11 +305,27 @@ void Game::run()
     	SDL_RenderCopy( Drawing::gRenderer, gTexture, NULL, &renderQuad );
 
 
-		sprintcar.DrawObject();
+		 timeText = "Time: " + to_string(timer.getTicks()/60000)+ " : " + to_string( timer.getTicks() / 1000 ) ; 
+	
+		Text timetxt(Drawing::gRenderer, "MATURASC.TTF",20, timeText, {255, 255 ,255 ,255});
+		timetxt.display(1320,750,Drawing::gRenderer);
 
-		
-					
-                	//Update screen
+		if(timer.getTicks()>= 120000)
+		{
+			timer.stop();
+			img = "smthng.gif"; //game won screen
+
+			loadMedia();
+		}
+
+		if(timer.getTicks() >= 118000)
+		{
+			line.draw();
+			line.move();
+		}
+		sprintcar.DrawObject();
+			
+        //Update screen
         //SDL_RenderPresent( Drawing::gRenderer );
 		
 		//firing 
@@ -317,8 +337,7 @@ void Game::run()
 
 		//stop main screen music
 		//Mix_PauseMusic();
-		
-
+	
 		}
 
 		//play music for main screen
