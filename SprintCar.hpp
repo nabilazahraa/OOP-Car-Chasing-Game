@@ -3,6 +3,9 @@
 #include "Drawing.hpp"
 #include "PoliceCar.hpp"
 #include "NormalCar.hpp"
+#include<vector>
+#include"Bullets.hpp"
+#include<SDL.h>
 
 #include <SDL.h>
 using namespace std;
@@ -12,7 +15,8 @@ class SprintCar{
     
     heroCar *h;
     PoliceCar *p;
-    //NormalCar vector
+    vector<NormalCar*>n;
+    long int count=2;
 
     void CreateHero(int );
     void DrawObject();
