@@ -28,18 +28,33 @@ void SprintCar::CreateHero(int choice)
 void SprintCar::CreatePolice()
 {
     p = new PoliceCar();
+    if (count%2==0)
+    {
+        NormalCar *norm=new NormalCar();
+        n.push_back(norm);
+    }
+    count++;
 }
 
 void SprintCar::DrawObject()
 {
     h->Draw();
-    // p->Draw();
+    p->Draw();
+    for(int i=0;i<n.size();i++)
+    {
+        n[i]->Draw();
+    }
 }
 void SprintCar::move(SDL_Keycode key)
 {
     if(key == SDLK_LEFT || key == SDLK_RIGHT ||key == SDLK_UP ||key== SDLK_DOWN)
     {
     h->Drive(Drawing::gRenderer,Drawing::assets, key);
+    }
+    p->Drive(Drawing::gRenderer,Drawing::assets, key);
+    for(int i=0;i<n.size();i++)
+    {
+        n[i]->Drive(Drawing::gRenderer,Drawing::assets, key);
     }
     
     // p->Drive(Drawing::gRenderer,Drawing::assets, key);

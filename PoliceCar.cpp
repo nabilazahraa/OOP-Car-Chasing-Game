@@ -2,17 +2,46 @@
 #include <iostream>
 #include <SDL.h>
 
- PoliceCar::PoliceCar()
- {
-    moverRect = {310,100, 70, 80};
-    speed = 5;
- };
 void PoliceCar::Draw()
 {
+    for(int i=0;i<b2.size();i++)
+    {
+        b2[i]->Draw('P');
+        b2[i]->ShootBullets('p');
+    }
     srcRect = sprite;
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
 };
+PoliceCar::PoliceCar()
+ {
+    int r=140+(rand()%550);
+    moverRect = {r,-65, 40, 70};
+ };
 void PoliceCar::Drive(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycode key)
 {
-    
+    int random2=20+(rand()%50);
+    if(moverRect.y<10)
+    moverRect.y+=25;
+    random=rand()%2;
+    if(random==0)
+    {
+        if(moverRect.x<680)
+        moverRect.x+=random2;
+        else
+        moverRect.x-=random2;
+    }
+    if(random==1)
+    {
+        if(moverRect.x>140)
+        moverRect.x-=random2;
+        else
+        moverRect.x+=random2;
+    }
+    fram++;
+    if(fram==7)
+    {
+        Bullets *bull=new Bullets(moverRect.x,moverRect.y);
+        b2.push_back(bull);
+        fram=0;
+    }
 };
