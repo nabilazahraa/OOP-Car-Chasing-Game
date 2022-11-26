@@ -2,6 +2,8 @@
 #include <SDL.h>
 #include <iostream>
 #include "Drawing.hpp"
+#include "Bullets.hpp"
+#include<vector>
 #pragma once
 using namespace std;
 class PoliceCar: public car{
