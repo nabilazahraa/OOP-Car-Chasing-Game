@@ -6,7 +6,7 @@
 class Mouse{
     public:
     // SDL_Texture *tex;
-    SDL_Rect sprite = {32,14,128,139};
+    SDL_Rect sprite = {3204,14,128,139};
     SDL_Rect rect;
     SDL_Rect point;
 

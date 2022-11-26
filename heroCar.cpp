@@ -15,13 +15,13 @@ void heroCar::Draw(){
 //sports car, bike or wagon.
 heroCar::heroCar(int x, int y, int w, int h )
 {
-    moverRect = {390,590, 100, 200};
+    moverRect = {390,590, 100, 150};
     speed = 5;
     sprite.x = x;
     sprite.y = y;
     sprite.w = w;
     sprite.h = h;
-
+    f = new Fire();
 }
 
 //Drive car using arrow keys
@@ -46,3 +46,17 @@ void heroCar::Drive(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycode ke
     }
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
 }
+
+void heroCar::shootFire()
+{
+    // f->Draw(moverRect.x, moverRect.y);
+    f->Shoot();
+    
+}
+
+SDL_Rect heroCar::getRect()
+{
+    return moverRect;
+}
+
+
