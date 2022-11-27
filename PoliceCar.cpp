@@ -23,7 +23,7 @@ void PoliceCar::Drive(SDL_Renderer* gRenderer, SDL_Texture* assets)
     int random2=25+(rand()%35);
     if(moverRect.y<10)
     moverRect.y+=25;
-    random=rand()%2;
+    random=rand()%5;
     if(random==0)
     {
         if(moverRect.x+random2>1300)
