@@ -15,31 +15,31 @@ void PoliceCar::Draw()
 PoliceCar::PoliceCar()
  {
     int r=140+(rand()%550);
-    moverRect = {r,65, 40, 70};
+    moverRect = {r,-40, 50, 80};
     
  };
 void PoliceCar::Drive(SDL_Renderer* gRenderer, SDL_Texture* assets)
 {
-    int random2=20+(rand()%50);
+    int random2=25+(rand()%35);
     if(moverRect.y<10)
     moverRect.y+=25;
     random=rand()%2;
     if(random==0)
     {
-        if(moverRect.x<150)
-        moverRect.x+=random2;
-        else
+        if(moverRect.x+random2>1300)
         moverRect.x-=random2;
+        else
+        moverRect.x+=random2;
     }
     if(random==1)
     {
-        if(moverRect.x>140)
-        moverRect.x-=random2;
-        else
+        if(moverRect.x-random2<200)
         moverRect.x+=random2;
+        else
+        moverRect.x-=random2;
     }
     fram++;
-    if(fram==7)
+    if(fram==10)
     {
         Bullets *bull=new Bullets(moverRect.x,moverRect.y);
         b2.push_back(bull);
