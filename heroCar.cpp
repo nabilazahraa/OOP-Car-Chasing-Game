@@ -33,14 +33,14 @@ void heroCar::Drive(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycode ke
 {
     
     if (key == SDLK_UP || key== SDLK_w){
-        if(moverRect.y>30) //not move out of screen in y axis
+        if(moverRect.y-30>40) //not move out of screen in y axis
          moverRect.y-=30;
     }
     else if (key == SDLK_DOWN || key==SDLK_s) {
         if(moverRect.y<700) //not move out of screen in y axis
         moverRect.y+=30;
     }
-    else if (key == SDLK_RIGHT || key==SDLK_d) {
+    else if (key==SDLK_d ||key == SDLK_RIGHT) {
         if(moverRect.x<1200) //not move out of screen in x axis
         moverRect.x+=35;
     }
@@ -49,9 +49,13 @@ void heroCar::Drive(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycode ke
         moverRect.x-=35;
     }
     else if(key== SDLK_b){
-        Bullets *b1=new Bullets(moverRect.x,moverRect.y);
-        b.push_back(b1);
+        if(fram%3==0)
+        {
+            Bullets *b1=new Bullets(moverRect.x,moverRect.y);
+            b.push_back(b1);
+        }
     }
+    fram++;
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
 }
 
