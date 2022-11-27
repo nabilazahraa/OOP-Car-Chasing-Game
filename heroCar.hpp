@@ -13,6 +13,7 @@ class heroCar:public car{
     int score;
     SDL_Rect srcRect, moverRect;
     SDL_Rect sprite; 
+    int fram=0;
     Fire* f;
     //sprite value
     vector<Bullets*> b;
