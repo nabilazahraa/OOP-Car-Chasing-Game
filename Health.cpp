@@ -7,17 +7,12 @@ Health::Health()
     srcRect = sprite[0];
     moverRect = {1300, 5, 150, 50};
 }
+
 void Health::Draw()
 {
-     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
-}
-
-//operator overloading can be done for lives
-void Health::DecreaseLife()
-{
-    lives -=1;
-    int spriteVal = 3-lives;
+     int spriteVal = 3-lives;
     srcRect = sprite[spriteVal];
+    
     if(spriteVal == 1)
     {
         moverRect = {1300, 5, 100, 50};
@@ -35,5 +30,16 @@ void Health::DecreaseLife()
         //end game
     }
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
+}
 
+//operator overloading to decrease lives
+void Health:: operator --()
+{
+    --lives;
+
+}
+
+int Health::getlives()
+{
+    return lives;
 }

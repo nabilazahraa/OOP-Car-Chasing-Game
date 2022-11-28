@@ -9,6 +9,7 @@ Timer::Timer()
 
     mPaused = false;
     mStarted = false;
+
 }
 
 void Timer::start()
@@ -39,6 +40,7 @@ void Timer::stop()
     
 }
 
+//we can overload maybe
 Uint32 Timer::getTicks()
 {
     //The actual timer time
@@ -67,4 +69,24 @@ bool Timer::isStarted()
 {
     //Timer is running and paused or unpaused
     return mStarted;
+}
+
+void Timer::display()
+{
+    string secs;
+    int s= (getTicks() / 1000 )%60;
+    if(s<10)
+    {
+        secs = "0" + to_string(s);
+    }
+    else
+    {
+        secs = to_string(s);
+    }
+
+    string mins;
+    mins = "0" + to_string(getTicks()/60000);
+    string txt = "Time: " + mins+ " : " +secs; 
+    time = new Text(Drawing::gRenderer, "MATURASC.TTF",20, txt, {255, 255 ,255});
+    time->display(1320,750,Drawing::gRenderer);
 }

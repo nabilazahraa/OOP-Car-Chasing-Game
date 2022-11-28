@@ -10,10 +10,6 @@
 #include "Drawing.hpp"
 using namespace std;
 
-
-
-
-
 class Game{
     //Screen dimension constants
     const int SCREEN_WIDTH = 1500;
@@ -31,8 +27,6 @@ class Game{
     
 
 public:
-
-
 
     bool init();
     bool loadMedia();

@@ -48,7 +48,7 @@ void SprintCar::DrawObject()
 
 void SprintCar::move(SDL_Keycode key)
 {
-    if(key == SDLK_LEFT || key == SDLK_RIGHT ||key == SDLK_UP ||key== SDLK_DOWN ||key == SDLK_b||key==SDLK_a||key==SDLK_d||key==SDLK_s||key==SDLK_w)
+    if(key == SDLK_LEFT || key == SDLK_RIGHT ||key == SDLK_UP ||key== SDLK_DOWN ||key == SDLK_b)
     {
         h->DriveHero(Drawing::gRenderer,Drawing::assets, key);
     }

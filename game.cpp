@@ -162,26 +162,26 @@ void Game::run()
 {
 	bool quit = false;
 	SDL_Event e;
+
 	Timer timer;
+
 	SprintCar sprintcar;
 
 	int scrollingOffset = 0;
+
 	Mouse m;
 	
 	button play;
 	button rules;
 	button exit;
-
 	button back;
-
 	button car1;
 	button car2;
 	button car3;
-
-	Health h;
+	button replay;
 
 	Text text(Drawing::gRenderer, "MATURASC.TTF",100, "Sprint Car Derby", {255, 255 ,255 ,255});
-	std::string timeText;
+
 	finishLine line;
    
 	
@@ -192,7 +192,6 @@ void Game::run()
 		//Handle events on queue
 		while( SDL_PollEvent( &e ) != 0 )
 		{
-			
 			//User requests quit
 		
 			if( e.type == SDL_QUIT )
@@ -201,19 +200,9 @@ void Game::run()
 			}
 
 			if(e.type == SDL_KEYDOWN)
-			{
-				//shoot fire on space bar
-				if(e.key.keysym.sym == SDLK_SPACE)
-				{
-					// fr->alive = true;
-					//update position of fire
-					// SDL_Rect moverRect = sprintcar.h->getRect();
-					// fr->update(moverRect);
-				} 
-				
+			{	
 				//move the car using arrow keys	
 				sprintcar.move(e.key.keysym.sym);
-			
 			}
 			//click on buttons
 			if(e.type == SDL_MOUSEBUTTONDOWN)
@@ -260,9 +249,6 @@ void Game::run()
 						img = "./assets/road.png";
 						loadMedia();
 						sprintcar.CreateHero(1);
-
-						
-						cout<<"timer started";
 						timer.start();
 						
 					}
@@ -271,7 +257,6 @@ void Game::run()
 						img = "./assets/road.png";
 						sprintcar.CreateHero(2);
 						loadMedia();
-						cout<<"timer started";
 						timer.start();
 					}
 					else if(car3.handleEvent(&e) ==true)
@@ -279,20 +264,25 @@ void Game::run()
 						img = "./assets/road.png";
 						sprintcar.CreateHero(3);
 						loadMedia();
-						cout<<"timer started";
 						timer.start();
 					}
 				}
 
-			
+				if(replay.handleEvent(&e) ==true)
+				{
+					//go to main screen again
+					img ="smthng.gif";
+					loadMedia();
+				}
+
 			}
 			
 		}
 
 		SDL_RenderClear(Drawing::gRenderer); //removes everything from renderer
-		SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);//Draws background to renderer
+		SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL); //Draws background to renderer
 		
-		//***********************draw the objects here********************
+		//***********************draw the objects here********************//
 		
 		if(img =="./assets/road.png")
 		{
@@ -309,10 +299,8 @@ void Game::run()
 			SDL_RenderCopy( Drawing::gRenderer, gTexture, NULL, &renderQuad );
 
 
-			timeText = "Time: " + to_string(timer.getTicks()/60000)+ " : " + to_string( (timer.getTicks() / 1000 )%60) ; 
-		
-			Text timetxt(Drawing::gRenderer, "MATURASC.TTF",20, timeText, {255, 255 ,255});
-			timetxt.display(1320,750,Drawing::gRenderer);
+			//display timer
+			timer.display();
 
 			if(timer.getTicks()>= 120000)
 			{
@@ -322,30 +310,34 @@ void Game::run()
 				loadMedia();
 			}
 
+			//draw finish line when timer about to end
 			if(timer.getTicks() >= 118000)
 			{
 				line.draw();
 				line.move();
 			}
+
 			//draw chosencar 
 			sprintcar.DrawObject();
 			
 			//move police and normal cars
 			sprintcar.moveCars();	
 
-			//firing 
-			// fr->Draw();
-			// fr->Shoot();
-
 			//health on screen
-			h.Draw();
+			// life.Draw();
+
+			//checking if health works
+			// if(life.getlives() ==3)
+			// {
+			// 	--life;
+			// }
 
 			//stop main screen music
 			//Mix_PauseMusic();
 			// Mix_VolumeMusic(40);
 		}
 
-		//play music for main screen
+		//play music for all screen
 		if( Mix_PlayingMusic() == 0 )
 		{
 			//Play the music
@@ -359,9 +351,6 @@ void Game::run()
 			play.draw(25,24,189,70, 180, 500, 250, 70);
 			rules.draw(25,111,189,71,180,580,250,70);
 			exit.draw(25,206,189,71, 180, 660, 250,70);
-
-		//back{25,301,189,70}
-		//replay {25,389,189,70}
 		}
 
 		if(img == "rules.png")
@@ -371,14 +360,19 @@ void Game::run()
 		
 		if(img == "choose.gif")
 		{
-			//ferrari {278,16,206,198}
-			//ducati {521,15,206,197}
-			//monster truck {415,251,206,197}
-			car1.draw(278,16,206,198, 200,300,300,300);
-			car2.draw(521,15,206,197, 600,300,300,300);
-			car3.draw(415,251,206,197,1000,300,300,300);
+			car1.draw(278,16,206,198, 200,300,300,300); //ferrari button
+			car2.draw(521,15,206,197, 600,300,300,300); //ducati button
+			car3.draw(415,251,206,197,1000,300,300,300); //monster truck button
 		}
+
+		// if(img == "replay.png")
+		// {
+		// 	replay.draw(25,389,189,70,600,300,300,300);
+		//  exit.draw(25,206,189,71, 180, 660, 250,70);
+		// 	h.score.display();
+		// }
 		
+		//draw mouse
 		m.draw();
 
 		//****************************************************************

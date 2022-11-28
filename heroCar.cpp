@@ -52,6 +52,7 @@ void heroCar::DriveHero(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycod
         }
     }
     fram++;
+    life.Draw();
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &sprite, &moverRect);
 }
 

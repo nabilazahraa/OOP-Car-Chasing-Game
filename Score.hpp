@@ -1,16 +1,18 @@
 #include <iostream>
 #include <SDL.h>
+#include "Text.hpp"
 
 class Score
 {
-    int score;
-
+    private:
+        int score;
+        Text* txt;
     public:
-    //operator overloading to increase score
-    // void operator ++()
 
-    void decreaseScore();
-    void displayScore();
+    //operator overloading to increase score
+        void operator +=(int x);
+        void operator -=(int x);
+        void displayScore();
 
 
 };

@@ -10,16 +10,18 @@
 using namespace std;
 
 class SprintCar{
+
     public:
-    
-    car *h; //herocar
+        car *h; //herocar
 
-    car *p;
-    vector<car*>n;
-    long int count=2;
+        car *p; //police car
 
-    void CreateHero(int );
-    void DrawObject();
-    void move(SDL_Keycode key);
-    void moveCars();
+        vector<car*>n; //normal car
+        long int count=2;
+
+        void CreateHero(int );
+        void DrawObject();
+        void move(SDL_Keycode key);
+        void moveCars();
+        
 };
