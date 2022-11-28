@@ -13,7 +13,7 @@ class NormalCar : public car
         SDL_Rect sprite2={2907,16,114,279};
         SDL_Rect sprite3={3036,30,123,231};
         int random=rand()%3;
-      
+        
     public:
         NormalCar();
         void Draw();

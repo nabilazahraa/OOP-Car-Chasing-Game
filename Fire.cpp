@@ -1,42 +1,29 @@
 #include "Fire.hpp"
 #include "Drawing.hpp"
 
+void Fire::Draw(char x)
+{
+    // if(x=='h')
+    // srcRect=sprite;
+    // else
+    // srcRect=sprite;
+    SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
+}
 
 Fire::Fire()
 {
-    moverRect = {390,590, 50, 80};
-    alive ==false;
-}
-void Fire::Draw()
-{
-    // int x,int y
-    // srcRect = sprite;
-    if(alive ==true)
-    {
-        // moverRect.x = car.x;
-        // moverRect.y = car.y;
-        
-    SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
-    }
-
+    moverRect={440,320,20,20};
 }
 
-void Fire::update(SDL_Rect car)
+Fire::Fire(int x, int y)
 {
-    moverRect.x = car.x + 20;
-    moverRect.y = car.y - 70;
+    moverRect={x,y+40,40,40};
 }
 
-void Fire::Shoot()
+void Fire::ShootFire(char s)
 {
-    if(alive == true)
-    {
-    moverRect.y -=10;
-    }
-    else if(moverRect.y<0)
-    {
-        alive == false;
-    }
-    
-    
+    // if(s=='h')
+    //     moverRect.y-=35;
+    // else
+        moverRect.y+=30;
 }

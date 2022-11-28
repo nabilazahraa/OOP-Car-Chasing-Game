@@ -19,12 +19,13 @@ void Health::Draw()
     }
     else if(spriteVal == 2)
     {
-        moverRect = {1300, 5, 70, 50};
+        moverRect = {1300, 5, 80, 50};
     }
     else if(spriteVal == 3)
     {
-        moverRect = {1300, 5, 50, 50};
+        moverRect = {1300, 5, 70, 50};
     }
+    
     if(lives == 0)
     {
         //end game

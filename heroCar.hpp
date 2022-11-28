@@ -20,7 +20,6 @@ class heroCar:public car{
         int fram=0;
         vector<Bullets*> b;
 
-
     public:
     
         heroCar(int, int, int, int);

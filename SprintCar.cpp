@@ -23,18 +23,20 @@ void SprintCar::CreateHero(int choice)
     h = new heroCar(1337,0,219,410) ;
     }
 
-    //police car and normal car should have a different function
     p = new PoliceCar();
-    if (count%2==0)
+    
+    
+}
+
+void SprintCar::CreateNormal()
+{
+    if (count<2)
     {
         NormalCar *norm=new NormalCar();
         n.push_back(norm);
     }
     count++;
-    
 }
-
-
 void SprintCar::DrawObject()
 {
     h->Draw();
@@ -43,6 +45,7 @@ void SprintCar::DrawObject()
     {
         n[i]->Draw();
     }
+
 }
 
 

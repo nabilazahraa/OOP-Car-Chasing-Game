@@ -17,11 +17,11 @@ class SprintCar{
         car *p; //police car
 
         vector<car*>n; //normal car
-        long int count=2;
+        int count=0;
 
         void CreateHero(int );
         void DrawObject();
         void move(SDL_Keycode key);
         void moveCars();
-        
-};
+        void CreateNormal();    
+};  

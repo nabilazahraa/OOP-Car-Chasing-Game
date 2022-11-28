@@ -18,18 +18,20 @@ void NormalCar::Draw()
     }
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
 }
+
 NormalCar::NormalCar()
-{
-    int r=200+(rand()%1300);
-    moverRect={r,-40, 50, 70};
+{  
+    int r=300+(rand()%900);
+    moverRect={r,800, 100, 120};
 }
+
 void NormalCar::DriveCar(SDL_Renderer* gRenderer, SDL_Texture* assets)
 {
-    moverRect.y+=20;
-    if(moverRect.y>=800)
+    moverRect.y -= 10;
+    if(moverRect.y<0)
     {
-        moverRect.y=-40;
-        int r2=200+(rand()%1100);
+        moverRect.y= 800;
+        int r2=300+(rand()%900);
         moverRect.x=r2;
         random=rand()%3;
     }

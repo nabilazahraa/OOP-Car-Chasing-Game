@@ -180,6 +180,7 @@ void Game::run()
 	button car3;
 	button replay;
 
+	Health life;
 	Text text(Drawing::gRenderer, "MATURASC.TTF",100, "Sprint Car Derby", {255, 255 ,255 ,255});
 
 	finishLine line;
@@ -317,14 +318,12 @@ void Game::run()
 				line.move();
 			}
 
+			sprintcar.CreateNormal();
 			//draw chosencar 
 			sprintcar.DrawObject();
 			
 			//move police and normal cars
 			sprintcar.moveCars();	
-
-			//health on screen
-			// life.Draw();
 
 			//checking if health works
 			// if(life.getlives() ==3)

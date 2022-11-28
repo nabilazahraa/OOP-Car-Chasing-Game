@@ -8,10 +8,11 @@ class Score
         int score;
         Text* txt;
     public:
-
+        Score();
     //operator overloading to increase score
         void operator +=(int x);
         void operator -=(int x);
+        void operator ++();
         void displayScore();
 
 

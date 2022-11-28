@@ -8,6 +8,9 @@ void heroCar::Draw(){
         b[i]->Draw('h');
         b[i]->ShootBullets('h');
     }
+    life.Draw();
+    score.displayScore();
+    ++score;
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &sprite, &moverRect);
     
 
@@ -17,7 +20,7 @@ void heroCar::Draw(){
 //sports car, bike or wagon.
 heroCar::heroCar(int x, int y, int w, int h )
 {
-    moverRect = {390,590, 50, 80};
+    moverRect = {390,500, 100,120};
     sprite.x = x;
     sprite.y = y;
     sprite.w = w;
@@ -28,15 +31,19 @@ heroCar::heroCar(int x, int y, int w, int h )
 void heroCar::DriveHero(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycode key)
 {
     
-    if (key == SDLK_UP){
-        if(moverRect.y-30>40) //not move out of screen in y axis
-         moverRect.y-=30;
-    }
-    else if (key == SDLK_DOWN ) {
-        if(moverRect.y<700) //not move out of screen in y axis
-        moverRect.y+=30;
-    }
-    else if (key==SDLK_RIGHT) {
+    // if (key == SDLK_UP)
+    // {
+    //     if(moverRect.y<0) 
+    //         moverRect.y = 800;
+    //         //not move out of screen in y axis
+    //      moverRect.y-=30;
+    // }
+    // else if (key == SDLK_DOWN ) {
+    //     if(moverRect.y<700) //not move out of screen in y axis
+    //     moverRect.y+=30;
+    // }
+
+    if (key==SDLK_RIGHT) {
         if(moverRect.x<1200) //not move out of screen in x axis
         moverRect.x+=35;
     }
@@ -45,15 +52,15 @@ void heroCar::DriveHero(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycod
         moverRect.x-=35;
     }
     else if(key== SDLK_b){
-        if(fram%2==0)
+        // if(fram%2==0)
         {
             Bullets *b1=new Bullets(moverRect.x,moverRect.y);
             b.push_back(b1);
+            
         }
     }
     fram++;
-    
-    life.Draw();
+
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &sprite, &moverRect);
 }
 
