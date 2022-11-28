@@ -5,7 +5,7 @@
 #include<SDL.h>
 #include"heroCar.hpp"
 
-void Bullets::Draw(char x)
+void Bullets::Draw()
 {
     // if(x=='h')
     // srcRect=sprite;
@@ -24,10 +24,10 @@ Bullets::Bullets(int x, int y)
     moverRect={x,y,20,30};
 }
 
-void Bullets::ShootBullets(char s)
+void Bullets::ShootBullets()
 {
-    if(s=='h')
+    // if(s=='h')
         moverRect.y-=35;
-    else
-        moverRect.y+=30;
+    // else
+    //     moverRect.y+=30;
 }

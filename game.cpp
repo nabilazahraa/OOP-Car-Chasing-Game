@@ -91,14 +91,14 @@ bool Game::loadMedia()
 	//Loading success flag
 	bool success = true;
 	
-	Drawing::assets = loadTexture("spritesheet.png");
+	Drawing::assets = loadTexture("./assets/spritesheet.png");
     gTexture = loadTexture(img);
 	if(Drawing::assets==NULL || gTexture==NULL)
     {
         printf("Unable to run due to error: %s\n",SDL_GetError());
         success =false;
     }
-	gMusic = Mix_LoadMUS( "tokyo.wav" );
+	gMusic = Mix_LoadMUS( "./sounds/tokyo.wav" );
     if( gMusic == NULL )
     {
         printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
@@ -181,7 +181,7 @@ void Game::run()
 	button replay;
 
 	Health life;
-	Text text(Drawing::gRenderer, "MATURASC.TTF",100, "Sprint Car Derby", {255, 255 ,255 ,255});
+	Text text(Drawing::gRenderer, "./fonts/MATURASC.TTF",100, "Sprint Car Derby", {255, 255 ,255 ,255});
 
 	finishLine line;
    
@@ -209,11 +209,11 @@ void Game::run()
 			if(e.type == SDL_MOUSEBUTTONDOWN)
 			{
 				//start game
-				if(img == "smthng.gif")
+				if(img == "./assets/smthng.gif")
 				{
 					if(play.handleEvent(&e) ==true)
 					{
-					img ="choose.gif";
+					img ="./assets/choose.gif";
 					loadMedia();
 					}
 
@@ -226,24 +226,24 @@ void Game::run()
 					//show rules screen
 					if(rules.handleEvent(&e) ==true)
 					{
-						img = "rules.png";
+						img = "./assets/rules.png";
 						loadMedia();
 					}
 
 				}
-				if(img == "rules.png")
+				if(img == "./assets/rules.png")
 				{
 					//go back from rules screen
 					if(back.handleEvent(&e) ==true)
 					{
-						img = "smthng.gif";
+						img = "./assets/smthng.gif";
 						
 						loadMedia();
 						
 					}
 				}
 				//choosing cars
-				if(img =="choose.gif")
+				if(img =="./assets/choose.gif")
 				{
 					if(car1.handleEvent(&e) ==true)
 					{
@@ -272,7 +272,7 @@ void Game::run()
 				if(replay.handleEvent(&e) ==true)
 				{
 					//go to main screen again
-					img ="smthng.gif";
+					img ="./assets/smthng.gif";
 					loadMedia();
 				}
 
@@ -306,7 +306,7 @@ void Game::run()
 			if(timer.getTicks()>= 120000)
 			{
 				timer.stop();
-				img = "smthng.gif"; //game won screen
+				img = "./assets/smthng.gif"; //game won screen
 
 				loadMedia();
 			}
@@ -319,6 +319,7 @@ void Game::run()
 			}
 
 			sprintcar.CreateNormal();
+
 			//draw chosencar 
 			sprintcar.DrawObject();
 			
@@ -343,7 +344,7 @@ void Game::run()
 			Mix_PlayMusic( gMusic, -1 );
 		}
 
-		if(img =="smthng.gif")
+		if(img =="./assets/smthng.gif")
 		{
 			text.display(50,50,Drawing::gRenderer);
 			
@@ -352,19 +353,19 @@ void Game::run()
 			exit.draw(25,206,189,71, 180, 660, 250,70);
 		}
 
-		if(img == "rules.png")
+		if(img == "./assets/rules.png")
 		{
 			back.draw(25,301,189,70,20,10,150,70);
 		}
 		
-		if(img == "choose.gif")
+		if(img == "./assets/choose.gif")
 		{
 			car1.draw(278,16,206,198, 200,300,300,300); //ferrari button
 			car2.draw(521,15,206,197, 600,300,300,300); //ducati button
 			car3.draw(415,251,206,197,1000,300,300,300); //monster truck button
 		}
 
-		// if(img == "replay.png")
+		// if(img == "./assets/replay.png")
 		// {
 		// 	replay.draw(25,389,189,70,600,300,300,300);
 		//  exit.draw(25,206,189,71, 180, 660, 250,70);

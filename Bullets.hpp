@@ -7,9 +7,9 @@ class Bullets
     SDL_Rect moverRect;
     
     public:
-        void Draw(char);
+        void Draw();
         Bullets();
         Bullets(int x,int y);
-        void ShootBullets(char s);
+        void ShootBullets();
         void collision();
 };

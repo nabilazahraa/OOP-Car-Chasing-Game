@@ -6,8 +6,8 @@ void PoliceCar::Draw()
 {
     for(int i=0;i<fires.size();i++)
     {
-        fires[i]->Draw('P');
-        fires[i]->ShootFire('p');
+        fires[i]->Draw();
+        fires[i]->ShootFire();
     }
 
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
@@ -16,40 +16,63 @@ void PoliceCar::Draw()
 PoliceCar::PoliceCar()
  {
     int r=200+(rand()%550);
-    moverRect = {500,50, 100, 120};
+    // moverRect = {500,50, 100, 120};
+    setmoverRect(500,50, 100, 120);
+    setRect(1136,27, 139,256);
+    direction = 1;
     
  };
 
-void PoliceCar::DriveCar(SDL_Renderer* gRenderer, SDL_Texture* assets)
+void PoliceCar::DriveCar()
 {
-    int random2=25+(rand()%35);
-    if(moverRect.y<20)
-        moverRect.y+=25;
+    // int random2=25+(rand()%35);
+    // if(moverRect.y<20)
+    //     moverRect.y+=25;
         
-    random=rand()%10;
+    // random=rand()%10;
 
-    if(random==0)
+    // if(random==0)
+    // {
+    //     if(moverRect.x+random2>1000)
+    //         moverRect.x-=random2;   
+    //     else
+    //         moverRect.x+=random2;
+    // }
+
+    // if(random==1)
+    // {
+    //     if(moverRect.x-random2<300)
+    //         moverRect.x+=random2;
+    //     else
+    //         moverRect.x-=random2;
+    // }
+
+    //moving car left and right 
+    if(direction ==1)
     {
-        if(moverRect.x+random2>1000)
-            moverRect.x-=random2;   
-        else
-            moverRect.x+=random2;
+        moverRect.x +=30;
+    }
+    else 
+    {
+        moverRect.x-=30;
+    }
+    if(moverRect.x<=300 || moverRect.x>=1100)
+    {
+        direction *=-1;
     }
 
-    if(random==1)
-    {
-        if(moverRect.x-random2<300)
-            moverRect.x+=random2;
-        else
-            moverRect.x-=random2;
-    }
-
-    
     fram++;
-    if(fram==10)
+    if(fram==5)
     {
         Fire* f =new Fire(moverRect.x,moverRect.y);
         fires.push_back(f);
         fram=0;
     }
+
+    
 };
+
+int PoliceCar::getDirection()
+{
+    return direction;
+}

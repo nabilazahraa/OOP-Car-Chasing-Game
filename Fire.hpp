@@ -7,12 +7,11 @@ class Fire
     public:
     SDL_Rect srcRect = {3364,61,107,194};
     SDL_Rect moverRect;
-    bool alive;
 
     public:
-    void Draw(char);
+    void Draw();
         Fire();
         Fire(int x,int y);
-        void ShootFire(char s);
+        void ShootFire();
         // void collision();
 };

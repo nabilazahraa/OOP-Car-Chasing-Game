@@ -6,33 +6,68 @@ void NormalCar::Draw()
 {
     if(random==0)
     {
-        srcRect=sprite1;    
+        setRect(sprite1.x, sprite1.y, sprite1.w, sprite1.h);    
     }
     if(random==1)
     {
-        srcRect=sprite2;    
+        // srcRect=sprite2; 
+        setRect(sprite2.x, sprite2.y, sprite2.w, sprite2.h);    
     }
     if(random==2)
     {
-        srcRect=sprite3;
+        // srcRect=sprite3;
+        setRect(sprite3.x, sprite3.y, sprite3.w, sprite3.h); 
     }
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
 }
 
-NormalCar::NormalCar()
+NormalCar::NormalCar(int x)
 {  
-    int r=300+(rand()%900);
-    moverRect={r,800, 100, 120};
+    // int r=300+(rand()%900);
+    int pos[4] = {300,500,600,700};
+
+    int r = rand()%3;
+    if(x ==1)
+    {
+        moverRect={390,800, 100, 120};
+    }
+    else{
+        moverRect={780,800, 100, 120};
+    }
+    
 }
 
-void NormalCar::DriveCar(SDL_Renderer* gRenderer, SDL_Texture* assets)
+void NormalCar::DriveNormalCar(SDL_Rect car,int dir)
 {
-    moverRect.y -= 10;
     if(moverRect.y<0)
     {
         moverRect.y= 800;
-        int r2=300+(rand()%900);
-        moverRect.x=r2;
+        // int r2=300+(rand()%900);
+
+        moverRect.x+= 100;
+        if(moverRect.x>900)
+        {
+            moverRect.x = 390;
+        }
+        
         random=rand()%3;
     }
+
+    //prevent normal car from crashing into police car
+    if(moverRect.x+10 == car.x ||moverRect.x-10 ==car.x || moverRect.x ==car.x)
+    {
+        if(dir == -1)
+        {
+            moverRect.x+=50;
+        }
+        else
+        {
+            moverRect.x -=50;
+        }
+    }
+    // if(moverRect.y<200)
+    // {
+    //     moverRect.y-=20;
+    // }
+    moverRect.y -= 10;
 }

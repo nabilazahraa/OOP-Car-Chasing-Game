@@ -10,9 +10,10 @@ class PoliceCar : public car
 {
     private:
         // int speed;
+        int direction;
         int random;
-        SDL_Rect srcRect= {1136,27, 139,256};
-        SDL_Rect moverRect;
+        // SDL_Rect srcRect= {1136,27, 139,256};
+        // SDL_Rect moverRect;
         
         int fram=0;
 
@@ -20,6 +21,6 @@ class PoliceCar : public car
         vector<Fire*> fires; 
         PoliceCar();
         void Draw();
-        void DriveCar(SDL_Renderer* gRenderer, SDL_Texture* assets);
-    
+        void DriveCar();
+        int getDirection();
 };

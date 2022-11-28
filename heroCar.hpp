@@ -15,8 +15,8 @@ class heroCar:public car{
         // int speed; 
         Score score;
         Health life;
-        SDL_Rect moverRect;
-        SDL_Rect sprite; 
+        // SDL_Rect moverRect;
+        // SDL_Rect sprite; 
         int fram=0;
         vector<Bullets*> b;
 

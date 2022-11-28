@@ -32,8 +32,17 @@ void SprintCar::CreateNormal()
 {
     if (count<2)
     {
-        NormalCar *norm=new NormalCar();
-        n.push_back(norm);
+        if(count ==0)
+        {
+            NormalCar *norm=new NormalCar(1);
+            n.push_back(norm);    
+        }
+        else
+        {   
+             NormalCar *norm=new NormalCar(2);
+             n.push_back(norm);
+        }
+        
     }
     count++;
 }
@@ -61,9 +70,12 @@ void SprintCar::move(SDL_Keycode key)
 //move police car and normal car
 void SprintCar::moveCars()
 {
-    p->DriveCar(Drawing::gRenderer,Drawing::assets);
+    p->DriveCar();
+    SDL_Rect police = p->getmoverRect();
+    int direction = p->getDirection();
     for(int i=0;i<n.size();i++)
     {
-        n[i]->DriveCar(Drawing::gRenderer,Drawing::assets);
+        n[i]->DriveNormalCar(police, direction);
     }
+
 }

@@ -5,13 +5,13 @@
 void heroCar::Draw(){
     for(int i=0;i<b.size();i++)
     {
-        b[i]->Draw('h');
-        b[i]->ShootBullets('h');
+        b[i]->Draw();
+        b[i]->ShootBullets();
     }
     life.Draw();
     score.displayScore();
     ++score;
-    SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &sprite, &moverRect);
+    SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
     
 
 }
@@ -20,11 +20,13 @@ void heroCar::Draw(){
 //sports car, bike or wagon.
 heroCar::heroCar(int x, int y, int w, int h )
 {
-    moverRect = {390,500, 100,120};
-    sprite.x = x;
-    sprite.y = y;
-    sprite.w = w;
-    sprite.h = h;
+    // moverRect = {390,500, 100,120};
+    setmoverRect(390,500, 100,120);
+    setRect(x,y,w,h);
+    // sprite.x = x;
+    // sprite.y = y;
+    // sprite.w = w;
+    // sprite.h = h;
 }
 
 //Drive car using arrow keys
@@ -61,13 +63,13 @@ void heroCar::DriveHero(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycod
     }
     fram++;
 
-    SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &sprite, &moverRect);
+    SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
 }
 
 
-SDL_Rect heroCar::getRect()
-{
-    return moverRect;
-}
+// SDL_Rect heroCar::getRect()
+// {
+//     return moverRect;
+// }
 
 

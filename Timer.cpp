@@ -32,11 +32,11 @@ void Timer::stop()
     mStarted = false;
 
     //Unpause the timer
-    mPaused = false;
+    // mPaused = false;
 
     //Clear tick variables
     mStartTicks = 0;
-    mPausedTicks = 0;
+    // mPausedTicks = 0;
     
 }
 
@@ -86,7 +86,7 @@ void Timer::display()
 
     string mins;
     mins = "0" + to_string(getTicks()/60000);
-    string txt = "Time: " + mins+ " : " +secs; 
-    time = new Text(Drawing::gRenderer, "MATURASC.TTF",20, txt, {255, 255 ,255});
-    time->display(1320,750,Drawing::gRenderer);
+    string txt = "Time: " + mins+":" +secs; 
+    time = new Text(Drawing::gRenderer, "./fonts/consolab.ttf",20, txt, {255, 255 ,255});
+    time->display(1300,750,Drawing::gRenderer);
 }

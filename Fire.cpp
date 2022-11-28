@@ -1,7 +1,7 @@
 #include "Fire.hpp"
 #include "Drawing.hpp"
 
-void Fire::Draw(char x)
+void Fire::Draw()
 {
     // if(x=='h')
     // srcRect=sprite;
@@ -20,7 +20,7 @@ Fire::Fire(int x, int y)
     moverRect={x,y+40,40,40};
 }
 
-void Fire::ShootFire(char s)
+void Fire::ShootFire()
 {
     // if(s=='h')
     //     moverRect.y-=35;
