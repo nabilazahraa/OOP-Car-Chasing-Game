@@ -2,31 +2,33 @@
 #include "car.hpp"
 #include <SDL.h>
 #include<vector>
+#include"Bullets.hpp"
+#include "Score.hpp"
+#include "Health.hpp"
 #include "Fire.hpp"
 #pragma once
-#include"Bullets.hpp"
+
 using namespace std;
 
 class heroCar:public car{
     private:
-    int speed;
-    int score;
-    SDL_Rect srcRect, moverRect;
+    // int speed;
+    Score score;
+    Health h;
+    SDL_Rect moverRect;
     SDL_Rect sprite; 
     int fram=0;
-    Fire* f;
+
+    // Fire* f;
     //sprite value
     vector<Bullets*> b;
-  
-    
-    //Score s;
-    //Health h;
+
 
     public:
     
     heroCar(int, int, int, int);
     void Draw();
-    void Drive(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycode key);
+    void DriveHero(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycode key);
     void shootFire();
     SDL_Rect getRect();
 };

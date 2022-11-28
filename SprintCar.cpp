@@ -50,7 +50,7 @@ void SprintCar::move(SDL_Keycode key)
 {
     if(key == SDLK_LEFT || key == SDLK_RIGHT ||key == SDLK_UP ||key== SDLK_DOWN ||key == SDLK_b||key==SDLK_a||key==SDLK_d||key==SDLK_s||key==SDLK_w)
     {
-        h->Drive(Drawing::gRenderer,Drawing::assets, key);
+        h->DriveHero(Drawing::gRenderer,Drawing::assets, key);
     }
     
 }
@@ -58,9 +58,9 @@ void SprintCar::move(SDL_Keycode key)
 //move police car and normal car
 void SprintCar::moveCars()
 {
-    p->Drive(Drawing::gRenderer,Drawing::assets);
+    p->DriveCar(Drawing::gRenderer,Drawing::assets);
     for(int i=0;i<n.size();i++)
     {
-        n[i]->Drive(Drawing::gRenderer,Drawing::assets);
+        n[i]->DriveCar(Drawing::gRenderer,Drawing::assets);
     }
 }

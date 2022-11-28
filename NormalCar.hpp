@@ -4,7 +4,7 @@
 #include<iostream>
 #include"Drawing.hpp"
 #include<cstdlib>
-class NormalCar: public car
+class NormalCar : public car
 {
     private:
         int speed;
@@ -16,5 +16,5 @@ class NormalCar: public car
     public:
         NormalCar();
         void Draw();
-        void Drive(SDL_Renderer* gRenderer, SDL_Texture* assets);
+        void DriveCar(SDL_Renderer* gRenderer, SDL_Texture* assets);
 };

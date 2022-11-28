@@ -18,7 +18,7 @@ PoliceCar::PoliceCar()
     moverRect = {r,-40, 50, 80};
     
  };
-void PoliceCar::Drive(SDL_Renderer* gRenderer, SDL_Texture* assets)
+void PoliceCar::DriveCar(SDL_Renderer* gRenderer, SDL_Texture* assets)
 {
     int random2=25+(rand()%35);
     if(moverRect.y<10)

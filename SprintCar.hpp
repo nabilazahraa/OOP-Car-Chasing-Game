@@ -1,4 +1,5 @@
 #include <iostream>
+#include "car.hpp"
 #include "heroCar.hpp"
 #include "Drawing.hpp"
 #include "PoliceCar.hpp"
@@ -11,9 +12,10 @@ using namespace std;
 class SprintCar{
     public:
     
-    heroCar *h;
-    PoliceCar *p;
-    vector<NormalCar*>n;
+    car *h; //herocar
+
+    car *p;
+    vector<car*>n;
     long int count=2;
 
     void CreateHero(int );

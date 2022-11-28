@@ -6,7 +6,8 @@
 #include<vector>
 #pragma once
 using namespace std;
-class PoliceCar: public car{
+class PoliceCar : public car
+{
     private:
     int speed;
     int random;
@@ -18,6 +19,6 @@ class PoliceCar: public car{
     vector<Bullets*> b2; 
     PoliceCar();
     void Draw();
-    void Drive(SDL_Renderer* gRenderer, SDL_Texture* assets);
+    void DriveCar(SDL_Renderer* gRenderer, SDL_Texture* assets);
     
 };

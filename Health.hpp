@@ -1,6 +1,6 @@
 #include <iostream>
 #include <SDL.h>
-
+#pragma once
 class Health
 {
     int lives;

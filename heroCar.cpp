@@ -1,17 +1,14 @@
 #include "heroCar.hpp"
 #include "Drawing.hpp"
 
-
-
 //Draw the car on the screen
 void heroCar::Draw(){
-    srcRect = sprite;
     for(int i=0;i<b.size();i++)
     {
         b[i]->Draw('h');
         b[i]->ShootBullets('h');
     }
-    SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
+    SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &sprite, &moverRect);
     
 
 }
@@ -25,11 +22,10 @@ heroCar::heroCar(int x, int y, int w, int h )
     sprite.y = y;
     sprite.w = w;
     sprite.h = h;
-    f = new Fire();
 }
 
 //Drive car using arrow keys
-void heroCar::Drive(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycode key)
+void heroCar::DriveHero(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycode key)
 {
     
     if (key == SDLK_UP){
@@ -56,13 +52,13 @@ void heroCar::Drive(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycode ke
         }
     }
     fram++;
-    SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
+    SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &sprite, &moverRect);
 }
 
 void heroCar::shootFire()
 {
     // f->Draw(moverRect.x, moverRect.y);
-    f->Shoot();
+    // f->Shoot();
     
 }
 
