@@ -32,19 +32,19 @@ heroCar::heroCar(int x, int y, int w, int h )
 void heroCar::Drive(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycode key)
 {
     
-    if (key == SDLK_UP || key== SDLK_w){
+    if (key == SDLK_UP){
         if(moverRect.y-30>40) //not move out of screen in y axis
          moverRect.y-=30;
     }
-    else if (key == SDLK_DOWN || key==SDLK_s) {
+    else if (key == SDLK_DOWN ) {
         if(moverRect.y<700) //not move out of screen in y axis
         moverRect.y+=30;
     }
-    else if (key==SDLK_d ||key == SDLK_RIGHT) {
+    else if (key==SDLK_RIGHT) {
         if(moverRect.x<1200) //not move out of screen in x axis
         moverRect.x+=35;
     }
-    else if (key == SDLK_LEFT || key==SDLK_a) {
+    else if (key == SDLK_LEFT) {
         if(moverRect.x>200) //not move out of screen in x axis
         moverRect.x-=35;
     }

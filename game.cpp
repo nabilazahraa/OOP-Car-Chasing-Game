@@ -164,6 +164,7 @@ void Game::run()
 	SDL_Event e;
 	Timer timer;
 	SprintCar sprintcar;
+
 	int scrollingOffset = 0;
 	Mouse m;
 	
@@ -177,8 +178,8 @@ void Game::run()
 	button car2;
 	button car3;
 
-	// Fire *fr = new Fire();
 	Health h;
+
 	Text text(Drawing::gRenderer, "MATURASC.TTF",100, "Sprint Car Derby", {255, 255 ,255 ,255});
 	std::string timeText;
 	finishLine line;
@@ -218,20 +219,39 @@ void Game::run()
 			if(e.type == SDL_MOUSEBUTTONDOWN)
 			{
 				//start game
-				
-				if(play.handleEvent(&e) ==true)
+				if(img == "smthng.gif")
 				{
-				img ="choose.gif";
-				loadMedia();
-				}
+					if(play.handleEvent(&e) ==true)
+					{
+					img ="choose.gif";
+					loadMedia();
+					}
 
-				//exit game 
-				if(exit.handleEvent(&e) ==true)
-				{
-					close();
-					quit = true;
+					//exit game 
+					if(exit.handleEvent(&e) ==true)
+					{
+						close();
+						quit = true;
+					}
+					//show rules screen
+					if(rules.handleEvent(&e) ==true)
+					{
+						img = "rules.png";
+						loadMedia();
+					}
+
 				}
-				
+				if(img == "rules.png")
+				{
+					//go back from rules screen
+					if(back.handleEvent(&e) ==true)
+					{
+						img = "smthng.gif";
+						
+						loadMedia();
+						
+					}
+				}
 				//choosing cars
 				if(img =="choose.gif")
 				{
@@ -264,20 +284,7 @@ void Game::run()
 					}
 				}
 
-				//show rules screen
-				if(rules.handleEvent(&e) ==true)
-				{
-					img = "rules.png";
-					loadMedia();
-				}
-				//go back from rules screen
-				if(back.handleEvent(&e) ==true)
-				{
-					img = "smthng.gif";
-					
-					loadMedia();
-					
-				}
+			
 			}
 			
 		}
@@ -302,9 +309,9 @@ void Game::run()
 			SDL_RenderCopy( Drawing::gRenderer, gTexture, NULL, &renderQuad );
 
 
-			timeText = "Time: " + to_string(timer.getTicks()/60000)+ " : " + to_string( timer.getTicks() / 1000 ) ; 
+			timeText = "Time: " + to_string(timer.getTicks()/60000)+ " : " + to_string( (timer.getTicks() / 1000 )%60) ; 
 		
-			Text timetxt(Drawing::gRenderer, "MATURASC.TTF",20, timeText, {255, 255 ,255 ,255});
+			Text timetxt(Drawing::gRenderer, "MATURASC.TTF",20, timeText, {255, 255 ,255});
 			timetxt.display(1320,750,Drawing::gRenderer);
 
 			if(timer.getTicks()>= 120000)
