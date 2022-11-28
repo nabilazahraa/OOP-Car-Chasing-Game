@@ -1,7 +1,7 @@
 #include "heroCar.hpp"
 #include "Drawing.hpp"
 
-//Draw the car on the screen
+//Draw the car on the screen 
 void heroCar::Draw(){
     for(int i=0;i<b.size();i++)
     {
@@ -45,23 +45,18 @@ void heroCar::DriveHero(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycod
         moverRect.x-=35;
     }
     else if(key== SDLK_b){
-        if(fram%3==0)
+        if(fram%2==0)
         {
             Bullets *b1=new Bullets(moverRect.x,moverRect.y);
             b.push_back(b1);
         }
     }
     fram++;
+    
     life.Draw();
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &sprite, &moverRect);
 }
 
-void heroCar::shootFire()
-{
-    // f->Draw(moverRect.x, moverRect.y);
-    // f->Shoot();
-    
-}
 
 SDL_Rect heroCar::getRect()
 {
