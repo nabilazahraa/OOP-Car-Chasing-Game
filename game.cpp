@@ -364,12 +364,19 @@ void Game::run()
 			car3.draw(415,251,206,197,1000,300,300,300); //monster truck button
 		}
 
-		// if(img == "replay.png")
-		// {
-		// 	replay.draw(25,389,189,70,600,300,300,300);
-		//  exit.draw(25,206,189,71, 180, 660, 250,70);
-		// 	h.score.display();
-		// }
+		if(img == "Gamewon.png")
+		{
+			replay.draw(25,389,189,70, 180, 500, 250, 70);
+			exit.draw(25,206,189,71,180,580,250,70);
+			//score.display();
+		}
+		if(img == "gameLost.png")
+		{
+			replay.draw(25,389,189,70, 180, 500, 250, 70);
+			exit.draw(25,206,189,71,180,580,250,70);
+			//h.score.display();
+		}
+		
 		
 		//draw mouse
 		m.draw();
