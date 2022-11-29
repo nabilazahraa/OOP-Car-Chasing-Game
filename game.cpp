@@ -213,16 +213,10 @@ void Game::run()
 				{
 					if(play.handleEvent(&e) ==true)
 					{
-					img ="./assets/choose.gif";
-					loadMedia();
+						img ="./assets/choose.gif";
+						loadMedia();
 					}
 
-					//exit game 
-					if(exit.handleEvent(&e) ==true)
-					{
-						close();
-						quit = true;
-					}
 					//show rules screen
 					if(rules.handleEvent(&e) ==true)
 					{
@@ -230,6 +224,15 @@ void Game::run()
 						loadMedia();
 					}
 
+				}
+				if(img =="./assets/smthng.gif" || img =="./assets/GameWon.png" || img == "./assets/gamelost.png")
+				{
+					//exit game 
+					if(exit.handleEvent(&e) ==true)
+					{
+						close();
+						quit = true;
+					}
 				}
 				if(img == "./assets/rules.png")
 				{
@@ -272,7 +275,7 @@ void Game::run()
 				if(replay.handleEvent(&e) ==true)
 				{
 					//go to main screen again
-					img ="./assets/smthng.gif";
+					img ="./assets/choose.gif";
 					loadMedia();
 				}
 
@@ -303,11 +306,11 @@ void Game::run()
 			//display timer
 			timer.display();
 
-			if(timer.getTicks()>= 120000)
+			//if(timer.getTicks()>= 120000)
+			if(timer.getTicks()>= 1200)
 			{
 				timer.stop();
-				img = "./assets/smthng.gif"; //game won screen
-
+				img = "./assets/GameWon.png"; //game won screen
 				loadMedia();
 			}
 
@@ -318,6 +321,11 @@ void Game::run()
 				line.move();
 			}
 
+			if(life.getlives() ==0)
+			{
+				img = "./assets/gameLost.png";
+				loadMedia();
+			}
 			sprintcar.CreateNormal();
 
 			//draw chosencar 
@@ -327,7 +335,7 @@ void Game::run()
 			sprintcar.moveCars();	
 
 			//checking if health works
-			// if(life.getlives() ==3)
+			// if(life.getlives() >0)
 			// {
 			// 	--life;
 			// }
@@ -347,7 +355,6 @@ void Game::run()
 		if(img =="./assets/smthng.gif")
 		{
 			text.display(50,50,Drawing::gRenderer);
-			
 			play.draw(25,24,189,70, 180, 500, 250, 70);
 			rules.draw(25,111,189,71,180,580,250,70);
 			exit.draw(25,206,189,71, 180, 660, 250,70);
@@ -365,12 +372,20 @@ void Game::run()
 			car3.draw(415,251,206,197,1000,300,300,300); //monster truck button
 		}
 
-		// if(img == "./assets/replay.png")
-		// {
-		// 	replay.draw(25,389,189,70,600,300,300,300);
-		//  exit.draw(25,206,189,71, 180, 660, 250,70);
-		// 	h.score.display();
-		// }
+		if(img == "./assets/GameWon.png")
+		{
+			replay.draw(25,389,189,70, 180, 500, 250, 70);
+			exit.draw(25,206,189,71,180,580,250,70);
+			sprintcar.h->DisplayScore();
+		}
+		if(img == "./assets/gameLost.png")
+		{
+			replay.draw(25,389,189,70, 180, 500, 250, 70);
+			exit.draw(25,206,189,71,180,580,250,70);
+			sprintcar.h->DisplayScore();
+		}
+		
+		
 		
 		//draw mouse
 		m.draw();
