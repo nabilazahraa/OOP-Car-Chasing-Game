@@ -23,10 +23,10 @@ void Score::operator -=(int x)
     score -=x;
 }
 
-void Score::displayScore()
+void Score::displayScore(int x, int y,int w)
 {
     string text = "Score: " + to_string(score);
-    txt = new Text(Drawing::gRenderer, "./fonts/consolab.ttf",20, text, {255, 255 ,255});
-    txt->display(90,10,Drawing::gRenderer);
+    txt = new Text(Drawing::gRenderer, "./fonts/consolab.ttf",w, text, {255, 255 ,255});
+    txt->display(x, y,Drawing::gRenderer);
 
 }

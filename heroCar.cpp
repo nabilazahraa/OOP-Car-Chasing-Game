@@ -9,7 +9,7 @@ void heroCar::Draw(){
         b[i]->ShootBullets();
     }
     life.Draw();
-    score.displayScore();
+    score.displayScore(90,10,20);
     ++score;
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
     
@@ -67,9 +67,7 @@ void heroCar::DriveHero(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycod
 }
 
 
-// SDL_Rect heroCar::getRect()
-// {
-//     return moverRect;
-// }
-
-
+void heroCar::DisplayScore()
+{
+    score.displayScore(500,300,100); 
+}

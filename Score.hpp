@@ -13,7 +13,7 @@ class Score
         void operator +=(int x);
         void operator -=(int x);
         void operator ++();
-        void displayScore();
+        void displayScore(int, int,int);
 
 
 };

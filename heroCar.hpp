@@ -27,4 +27,5 @@ class heroCar:public car{
         void DriveHero(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycode key);
         void shootFire();
         SDL_Rect getRect();
+        void DisplayScore();
 };

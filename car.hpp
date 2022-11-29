@@ -25,6 +25,6 @@ class car{
 
     virtual void DriveNormalCar(SDL_Rect,int);
     virtual int getDirection();
-
+    virtual void DisplayScore();
     
 };

@@ -10,7 +10,7 @@ Health::Health()
 
 void Health::Draw()
 {
-     int spriteVal = 3-lives;
+    int spriteVal = 3-lives;
     srcRect = sprite[spriteVal];
     
     if(spriteVal == 1)
@@ -37,7 +37,6 @@ void Health::Draw()
 void Health:: operator --()
 {
     --lives;
-
 }
 
 int Health::getlives()

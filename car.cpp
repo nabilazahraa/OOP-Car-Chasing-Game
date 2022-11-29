@@ -41,3 +41,8 @@ void car::DriveNormalCar(SDL_Rect car, int x)
 
 int car::getDirection()
 {}
+
+void car::DisplayScore()
+{
+
+};

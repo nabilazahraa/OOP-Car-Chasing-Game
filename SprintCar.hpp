@@ -23,5 +23,6 @@ class SprintCar{
         void DrawObject();
         void move(SDL_Keycode key);
         void moveCars();
-        void CreateNormal();    
+        void CreateNormal();   
+        void score(); 
 };  
