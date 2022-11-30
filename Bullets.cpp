@@ -26,6 +26,10 @@ Bullets::Bullets(int x, int y)
 void Bullets::ShootBullets()
 {
         moverRect.y-=35;
+        if(moverRect.y<=-10)
+        {
+            gone=true;
+        }
 }
 
 SDL_Rect* Bullets::getMover()
@@ -34,11 +38,14 @@ SDL_Rect* Bullets::getMover()
 }
 
 bool Bullets::Mask(car* p, car* h)
-{
+{   
     bool collision = SDL_HasIntersection(getMover(), p->getMoverRect());
     if(collision == true)
     { 
         h->IncreaseScore();
+        BoomMove={moverRect.x,moverRect.y,60,60};
+        SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &Boom, &BoomMove);
+        moverRect.y=-30;
     }
     return collision;
 }
