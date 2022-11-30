@@ -10,12 +10,16 @@ void heroCar::Draw(){
     //     b[i]->Draw();
     //     b[i]->ShootBullets();
     // }
+
+   
     //draw health
     life.Draw();
     //draw score
     score.displayScore(90,10,20);
     //increase score 
     ++score;
+
+
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
     
 
@@ -48,6 +52,7 @@ void heroCar::DriveHero(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycod
     if (key==SDLK_RIGHT) {
         if(moverRect.x<1200) //not move out of screen in x axis
         moverRect.x+=35;
+
     }
     else if (key == SDLK_LEFT) {
         if(moverRect.x>200) //not move out of screen in x axis
@@ -94,4 +99,13 @@ void heroCar::DecreaseHealth()
 int heroCar::getLife()
 {
     return life.getlives();
+}
+
+void NormalCar::Mask(car* h)
+{
+    bool collision = SDL_HasIntersection(getMover(), h->getMoverRect());
+    if(collision == true)
+    { 
+        h->DecreaseScore();
+    }
 }

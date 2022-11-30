@@ -7,7 +7,8 @@ void NormalCar::Draw()
     //choose sprite from 3 sprites randomly
     if(random==0)
     {
-        setRect(sprite1.x, sprite1.y, sprite1.w, sprite1.h);    
+        setRect(sprite1.x, sprite1.y, sprite1.w, sprite1.h);  
+
     }
     if(random==1)
     {
@@ -70,3 +71,12 @@ void NormalCar::DriveNormalCar(SDL_Rect car,int dir)
     // }
     moverRect.y -= 10;
 }
+
+// void NormalCar::Mask(car* h)
+// {
+//     bool collision = SDL_HasIntersection(getMover(), h->getMoverRect());
+//     if(collision == true)
+//     { 
+//         h->DecreaseScore();
+//     }
+// }
