@@ -87,9 +87,9 @@ void heroCar::DrawBullets(car* p,car*h)
     {
         b[i]->Draw();
         b[i]->ShootBullets();
-        if(b[i]->Mask(p, h)==true)
+        if(b[i]->gone==true)
         {
-            b.erase(i+b.begin());
+            b.erase(b.begin()+i); //DELETES THE BULLETS OBJECT AS SOON AS IT LEAVES SCREEN.
         }
     }
 }
@@ -111,4 +111,12 @@ void heroCar::DecreaseScore()
     {
         score-=100;
     }
+}
+heroCar::~heroCar()
+{
+    for(int i=0;i<b.size();i++)
+    {
+        delete b[i];
+    }
+    b.clear();
 }
