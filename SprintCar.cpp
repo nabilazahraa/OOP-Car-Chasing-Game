@@ -55,19 +55,24 @@ void SprintCar::DrawObject()
 {
     h->Draw();
     h->DrawBullets(p,h);
+    
+
+}
+
+void SprintCar::DrawCars()
+{
     p->DrawBullets(h);
     p->Draw();
     for(int i=0;i<n.size();i++)
     {
         n[i]->Draw();
     }
-
 }
 
 //move and shoot bullets of hero car
 void SprintCar::move(SDL_Keycode key)
 {
-    if(key == SDLK_LEFT || key == SDLK_RIGHT ||key == SDLK_UP ||key== SDLK_DOWN ||key == SDLK_b)
+    if(key == SDLK_LEFT || key == SDLK_RIGHT ||key == SDLK_UP ||key== SDLK_DOWN ||key == SDLK_SPACE)
     {
         h->DriveHero(Drawing::gRenderer,Drawing::assets, key);
     }
@@ -82,7 +87,7 @@ void SprintCar::moveCars()
     int direction = p->getDirection();
     for(int i=0;i<n.size();i++)
     {
-        n[i]->DriveNormalCar(police, direction);
+        n[i]->DriveNormalCar(h,police, direction);
     }
 }
 

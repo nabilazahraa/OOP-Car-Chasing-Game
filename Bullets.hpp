@@ -13,6 +13,6 @@ class Bullets
         Bullets(int x,int y);
         void ShootBullets();
         // void collision();
-        void Mask(car* p,car*);
+        bool Mask(car* p,car*);
         SDL_Rect* getMover();
 };

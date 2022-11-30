@@ -25,4 +25,6 @@ class SprintCar{
         void moveCars();
         void CreateNormal();   
         void score(); 
+        void DrawCars();
 };  
+

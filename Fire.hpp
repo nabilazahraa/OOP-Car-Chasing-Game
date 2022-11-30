@@ -16,5 +16,5 @@ class Fire
         void ShootFire();
         // void collision();
         SDL_Rect* getMover();
-        void Mask(car* h);
+        bool Mask(car* h);
 };

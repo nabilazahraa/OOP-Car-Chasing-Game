@@ -72,5 +72,6 @@ void Timer::display()
     mins = "0" + to_string(getTicks()/60000);
     string txt = "Time: " + mins+":" +secs; 
     time = new Text(Drawing::gRenderer, "./fonts/consolab.ttf",20, txt, {255, 255 ,255});
-    time->display(1300,750,Drawing::gRenderer);
+    time->display(1310,750,Drawing::gRenderer);
+    
 }

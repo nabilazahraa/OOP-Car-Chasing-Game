@@ -35,8 +35,13 @@ void car::DriveHero(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycode ke
 void car::DriveCar()
 {}
 
-void car::DriveNormalCar(SDL_Rect car, int x)
+void car::DriveNormalCar(car* ,SDL_Rect,int)
 {}
+
+bool car::Mask(car* h)
+{
+
+}
 
 int car::getDirection()
 {}
@@ -58,3 +63,6 @@ void car::DecreaseScore(){};
 void car::DecreaseHealth(){};
 
 int car::getLife(){};
+
+void car::DecreaseScore()
+{};

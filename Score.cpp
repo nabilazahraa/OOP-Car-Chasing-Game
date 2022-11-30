@@ -24,6 +24,12 @@ void Score::operator -=(int x)
     score -=x;
 }
 
+bool Score::operator >(int x)
+{
+    return score<x;
+}
+
+
 //displays score on the screen 
 void Score::displayScore(int x, int y,int w)
 {
