@@ -377,7 +377,14 @@ void Game::run()
 			exit.draw(25,206,189,71,180,580,250,70);
 			sprintcar.h->DisplayScore();
 		}
+<<<<<<< Updated upstream
 		if(img == "./assets/gameLost.png")
+=======
+
+
+
+		if(img == "gameLost.png")
+>>>>>>> Stashed changes
 		{
 			replay.draw(25,389,189,70, 180, 500, 250, 70);
 			exit.draw(25,206,189,71,180,580,250,70);
