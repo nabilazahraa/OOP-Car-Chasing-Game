@@ -101,11 +101,12 @@ int heroCar::getLife()
     return life.getlives();
 }
 
-void heroCar::Mask(car* h)
+bool heroCar::Mask(car* h)
 {
     bool collision = SDL_HasIntersection(getMover(), h->getMoverRect());
     if(collision == true)
     { 
         h->DecreaseScore();
     }
+    return collision
 }
