@@ -24,4 +24,5 @@ class PoliceCar : public car
         void DriveCar();
         int getDirection();
         void DrawBullets(car* h);
+        ~PoliceCar();
 };
