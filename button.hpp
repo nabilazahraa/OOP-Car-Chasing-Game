@@ -6,7 +6,6 @@ using namespace std;
 
 class button{
 public: 
-    //SDL_Texture *tex;
     SDL_Rect rect;
     SDL_Rect sprite;
     bool selected = false;

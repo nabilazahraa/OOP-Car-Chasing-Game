@@ -4,7 +4,8 @@
 #include <SDL_ttf.h>
 #include <sstream>
 
- Text::Text(SDL_Renderer *renderer,
+//Initialze text values
+Text::Text(SDL_Renderer *renderer,
     const string &fontPath, 
     int fontSize, 
     const string &text, 
@@ -14,15 +15,15 @@
         SDL_QueryTexture(textTexture, nullptr,nullptr, &textRect.w,&textRect.h);
     }
 
-
-void Text::display(int x, int y, SDL_Renderer *renderer)
-const 
+//display text on screen
+void Text::display(int x, int y, SDL_Renderer *renderer) const 
 {
     textRect.x = x;
     textRect.y = y;
     SDL_RenderCopy(renderer, textTexture, nullptr, &textRect);
 }
 
+//load font
 SDL_Texture *Text::loadFont(SDL_Renderer *renderer,
     const string &fontPath,
     int fontSize,

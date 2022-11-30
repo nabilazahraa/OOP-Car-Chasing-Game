@@ -4,24 +4,26 @@
 
 void PoliceCar::Draw()
 {
-    for(int i=0;i<fires.size();i++)
-    {
-        fires[i]->Draw();
-        fires[i]->ShootFire();
-    }
+    //draw fires
+    // for(int i=0;i<fires.size();i++)
+    // {
+    //     fires[i]->Draw();
+    //     fires[i]->ShootFire();
+        
+    // }
 
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
 };
 
+//Initialize police car values
 PoliceCar::PoliceCar()
  {
-    int r=200+(rand()%550);
-    // moverRect = {500,50, 100, 120};
+    // int r=200+(rand()%550);
     setmoverRect(500,50, 100, 120);
     setRect(1136,27, 139,256);
     direction = 1;
     
- };
+};
 
 void PoliceCar::DriveCar()
 {
@@ -61,18 +63,30 @@ void PoliceCar::DriveCar()
         direction *=-1;
     }
 
+    //shoot fire
     fram++;
-    if(fram==5)
+    if(fram== 10)
     {
         Fire* f =new Fire(moverRect.x,moverRect.y);
         fires.push_back(f);
-        fram=0;
+        fram = 0;
     }
-
     
 };
 
+//return direction of police car movement
 int PoliceCar::getDirection()
 {
     return direction;
+}
+
+void PoliceCar::DrawBullets(car* h)
+{
+    for(int i=0;i<fires.size();i++)
+    {
+        fires[i]->Draw();
+        fires[i]->ShootFire();
+        fires[i]->Mask(h);
+        
+    }
 }

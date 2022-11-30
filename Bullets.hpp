@@ -1,5 +1,6 @@
 #include <iostream>
 #include <SDL.h>
+#include "car.hpp"
 #pragma once
 class Bullets
 {
@@ -11,5 +12,7 @@ class Bullets
         Bullets();
         Bullets(int x,int y);
         void ShootBullets();
-        void collision();
+        // void collision();
+        void Mask(car* p,car*);
+        SDL_Rect* getMover();
 };

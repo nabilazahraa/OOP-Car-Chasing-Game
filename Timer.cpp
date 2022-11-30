@@ -1,43 +1,33 @@
 #include "Timer.hpp"
 
-
+//Initialize timer values
 Timer::Timer()
 {
     //Initialize the variables
     mStartTicks = 0;
-    mPausedTicks = 0;
 
-    mPaused = false;
     mStarted = false;
 
 }
 
+//start timer
 void Timer::start()
 {
     //Start the timer
     mStarted = true;
 
-    //Unpause the timer
-    mPaused = false;
-
     //Get the current clock time
     mStartTicks = SDL_GetTicks();
-    mPausedTicks = 0;
 }
 
+//stop timer
 void Timer::stop()
 {
-    
     //Stop the timer
     mStarted = false;
 
-    //Unpause the timer
-    // mPaused = false;
-
     //Clear tick variables
     mStartTicks = 0;
-    // mPausedTicks = 0;
-    
 }
 
 //we can overload maybe
@@ -49,13 +39,6 @@ Uint32 Timer::getTicks()
     //If the timer is running
     if( mStarted )
     {
-        //If the timer is paused
-        // if( mPaused )
-        // {
-        //     //Return the number of ticks when the timer was paused
-        //     time = mPausedTicks;
-        // }
-        // else
         {
             //Return the current time minus the start time
             time = SDL_GetTicks() - mStartTicks;
@@ -65,12 +48,13 @@ Uint32 Timer::getTicks()
     return time;
 }
 
+//check if timer is running
 bool Timer::isStarted()
 {
-    //Timer is running and paused or unpaused
     return mStarted;
 }
 
+//display timer on screen
 void Timer::display()
 {
     string secs;

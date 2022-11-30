@@ -1,5 +1,6 @@
 #include "button.hpp"
 
+//Initialize button values
 button::button()
 {
     rect.x = 150;
@@ -13,6 +14,7 @@ button::~button()
 
 }
 
+//draw button according to sprite values and position values
 void button::draw(int x1, int y1, int w1, int h1, int xr, int yr, int wr, int hr)
 {
     rect.x = xr;
@@ -28,6 +30,7 @@ void button::draw(int x1, int y1, int w1, int h1, int xr, int yr, int wr, int hr
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &sprite, &rect);
 }
 
+//check if button is clicked
 bool button::handleEvent(SDL_Event* e)
 {
     if(e->type == SDL_MOUSEBUTTONDOWN)

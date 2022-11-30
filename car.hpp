@@ -7,24 +7,33 @@ class car{
 
     int speed;
     SDL_Rect srcRect, moverRect;
-    // SDL_Rect moverRect;
-    // SDL_Rect sprite; 
     
     public:
     car();
     void setRect(int x, int y, int w, int h);
     void setmoverRect(int x, int y, int w, int h);
-    SDL_Rect getmoverRect();
+
+    //return moverRect values
+    SDL_Rect* getMoverRect();
+     SDL_Rect getmoverRect();
     //virtual draw function
     virtual void Draw()= 0;
 
     //herocar drive function
     virtual void DriveHero(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycode key);
-    //normalcar and policecar drive function 
+    //policecar drive function 
     virtual void DriveCar();
-
+    //normal car drive function
     virtual void DriveNormalCar(SDL_Rect,int);
+    //police car direction function
     virtual int getDirection();
+    //herocar display score function
     virtual void DisplayScore();
+
+    virtual void DrawBullets(car* p,car*);
+     virtual void DrawBullets(car*);
+    virtual void IncreaseScore();
+    virtual void DecreaseHealth();
+    virtual int getLife();
     
 };

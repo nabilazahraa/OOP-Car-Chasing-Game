@@ -28,4 +28,9 @@ class heroCar:public car{
         void shootFire();
         SDL_Rect getRect();
         void DisplayScore();
+        void DrawBullets(car* p, car* h);
+        void IncreaseScore();
+        void DecreaseHealth();
+        int getLife();
+
 };

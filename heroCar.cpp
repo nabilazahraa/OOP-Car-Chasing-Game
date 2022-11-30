@@ -1,32 +1,32 @@
 #include "heroCar.hpp"
 #include "Drawing.hpp"
 
-//Draw the car on the screen 
+//Draw the car and its attributes on the screen 
 void heroCar::Draw(){
-    for(int i=0;i<b.size();i++)
-    {
-        b[i]->Draw();
-        b[i]->ShootBullets();
-    }
+
+    //draw bullets
+    // for(int i=0;i<b.size();i++)
+    // {
+    //     b[i]->Draw();
+    //     b[i]->ShootBullets();
+    // }
+    //draw health
     life.Draw();
+    //draw score
     score.displayScore(90,10,20);
+    //increase score 
     ++score;
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
     
 
 }
 
-//initializes heroCar according to the sprite values of 
-//sports car, bike or wagon.
+//initializes heroCar according to the sprite values
 heroCar::heroCar(int x, int y, int w, int h )
 {
-    // moverRect = {390,500, 100,120};
     setmoverRect(390,500, 100,120);
     setRect(x,y,w,h);
-    // sprite.x = x;
-    // sprite.y = y;
-    // sprite.w = w;
-    // sprite.h = h;
+   
 }
 
 //Drive car using arrow keys
@@ -61,13 +61,37 @@ void heroCar::DriveHero(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycod
             
         }
     }
-    fram++;
+    // fram++;
 
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
 }
 
-
+void heroCar::IncreaseScore()
+{
+    score+=1000;
+}
+//display hero car score
 void heroCar::DisplayScore()
 {
-    score.displayScore(500,300,100); 
+    score.displayScore(500,700,100); 
+}
+
+void heroCar::DrawBullets(car* p,car*h)
+{
+    for(int i=0;i<b.size();i++)
+    {
+        b[i]->Draw();
+        b[i]->ShootBullets();
+        b[i]->Mask(p, h);
+    }
+}
+
+void heroCar::DecreaseHealth()
+{
+    --life;
+}
+
+int heroCar::getLife()
+{
+    return life.getlives();
 }
