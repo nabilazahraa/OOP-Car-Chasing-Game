@@ -83,3 +83,11 @@ bool NormalCar::Mask(car* h)
     }
     return collision;
 }
+SprintCar::~SprintCar()
+{
+    for(int i=0;i<n.size();i++)
+    {
+        delete n[i];
+    }
+    n.clear();
+}
