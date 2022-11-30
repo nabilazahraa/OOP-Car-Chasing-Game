@@ -23,6 +23,10 @@ Fire::Fire(int x, int y)
 void Fire::ShootFire()
 {
     moverRect.y+=30;
+    if (moverRect.y>=820)
+    {
+        firegone=true;
+    }
 }
 
 SDL_Rect* Fire::getMover()
@@ -32,10 +36,12 @@ SDL_Rect* Fire::getMover()
 
 bool Fire::Mask(car* h)
 {
-    bool collision = SDL_HasIntersection(getMover(), h->getMoverRect());
     if(collision == true)
     { 
         h->DecreaseHealth();
+        BoomMove={moverRect.x,moverRect.y,60,60};
+        SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &Boom, &BoomMove);
+        moverRect.y=820;
     }
     return collision;
     
