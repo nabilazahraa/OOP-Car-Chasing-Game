@@ -91,5 +91,12 @@ void SprintCar::moveCars()
     }
 }
 
+int SprintCar::getLife()
+{
+    return h->getLife();
+}
 
-
+void SprintCar::DisplayScore()
+{
+    h->DisplayScore();
+}

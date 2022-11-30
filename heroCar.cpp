@@ -50,15 +50,15 @@ void heroCar::DriveHero(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycod
     // }
 
     if (key==SDLK_RIGHT) {
-        if(moverRect.x<1200) //not move out of screen in x axis
+        if(moverRect.x<1100) //not move out of screen in x axis
         moverRect.x+=35;
 
     }
     else if (key == SDLK_LEFT) {
-        if(moverRect.x>200) //not move out of screen in x axis
+        if(moverRect.x>300) //not move out of screen in x axis
         moverRect.x-=35;
     }
-    else if(key== SDLK_b){
+    else if(key== SDLK_SPACE){
         // if(fram%2==0)
         {
             Bullets *b1=new Bullets(moverRect.x,moverRect.y);

@@ -230,8 +230,8 @@ void Game::run()
 					//exit game 
 					if(exit.handleEvent(&e) ==true)
 					{
-						close();
 						quit = true;
+						
 					}
 				}
 				if(img == "./assets/rules.png")
@@ -314,7 +314,7 @@ void Game::run()
 			}
 
 			//game is lost when lives are =0
-			if(sprintcar.h->getLife()==0)
+			if(sprintcar.getLife()==0)
 			{
 				
 				img = "./assets/gamelost.png";
@@ -326,7 +326,7 @@ void Game::run()
 			//draw chosencar 
 			sprintcar.DrawObject();
 
-			if(timer.getTicks()<=87000)
+			if(timer.getTicks()<=86000)
 			{
 				sprintcar.DrawCars();
 				sprintcar.moveCars();	
@@ -337,12 +337,6 @@ void Game::run()
 				line.draw();
 				line.move();
 			}
-			// //move police and normal cars
-			// sprintcar.moveCars();	
-
-			//stop main screen music
-			//Mix_PauseMusic();
-			// Mix_VolumeMusic(40);
 		}
 
 		//play music for all screen
@@ -376,13 +370,13 @@ void Game::run()
 		{
 			replay.draw(25,389,189,70, 180, 500, 250, 70);
 			exit.draw(25,206,189,71,180,580,250,70);
-			sprintcar.h->DisplayScore();
+			sprintcar.DisplayScore();
 		}
 		if(img == "./assets/gamelost.png")
 		{
 			replay.draw(25,389,189,70, 180, 500, 250, 70);
 			exit.draw(25,206,189,71,180,580,250,70);
-			sprintcar.h->DisplayScore();
+			sprintcar.DisplayScore();
 		}
 		
 		//draw mouse

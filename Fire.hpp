@@ -5,7 +5,7 @@
 
 class Fire
 {
-    public:
+    private:
     SDL_Rect srcRect = {1913,1,107,194};
     SDL_Rect moverRect;
 

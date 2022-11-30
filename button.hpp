@@ -5,11 +5,13 @@
 using namespace std;
 
 class button{
-public: 
+
+private:
     SDL_Rect rect;
     SDL_Rect sprite;
     bool selected = false;
 
+public: 
     button();
     virtual ~button();
 

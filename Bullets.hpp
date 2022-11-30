@@ -4,6 +4,7 @@
 #pragma once
 class Bullets
 {
+    private:
     SDL_Rect srcRect= {2115,23,62,170};
     SDL_Rect moverRect;
     

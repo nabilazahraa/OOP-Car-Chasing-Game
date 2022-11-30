@@ -5,6 +5,7 @@
 
 class finishLine
 {
+    private:
     SDL_Rect srcRect= {2254,135,481,141};
     SDL_Rect moverRect = {250 ,100,1000,300};
 
