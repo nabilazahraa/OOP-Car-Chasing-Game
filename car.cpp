@@ -58,6 +58,7 @@ void car::DrawBullets(car*)
 
 };
 void car::IncreaseScore(){};
+void car::DecreaseScore(){};
 
 void car::DecreaseHealth(){};
 
