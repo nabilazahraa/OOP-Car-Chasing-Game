@@ -28,5 +28,6 @@ class SprintCar{
         void DrawCars();
         void DisplayScore();
         int getLife();
+        ~SprintCar();
 };  
 
