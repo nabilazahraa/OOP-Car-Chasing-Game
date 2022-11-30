@@ -7,27 +7,37 @@
 
 void Bullets::Draw()
 {
-    // if(x=='h')
-    // srcRect=sprite;
-    // else
-    // srcRect=sprite1;
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
 }
 
+//Initializes bullets
 Bullets::Bullets()
 {
     moverRect={440,320,20,20};
 }
 
+//Initializes bullets according to car position
 Bullets::Bullets(int x, int y)
 {
     moverRect={x,y,20,30};
 }
 
+//move the bullets
 void Bullets::ShootBullets()
 {
-    // if(s=='h')
         moverRect.y-=35;
-    // else
-    //     moverRect.y+=30;
+}
+
+SDL_Rect* Bullets::getMover()
+{
+    return &moverRect;
+}
+
+void Bullets::Mask(car* p, car* h)
+{
+    bool collision = SDL_HasIntersection(getMover(), p->getMoverRect());
+    if(collision == true)
+    { 
+        h->IncreaseScore();
+    }
 }

@@ -12,7 +12,9 @@ class Health
     Health();
     //operator overloading to decrease life
     void operator --(); 
+    //get number of lives left
     int getlives();
+    //draw health according to lives
     void Draw();
-
+    
 };

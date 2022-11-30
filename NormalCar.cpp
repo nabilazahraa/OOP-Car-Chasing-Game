@@ -4,18 +4,17 @@
 #pragma once
 void NormalCar::Draw()
 {
+    //choose sprite from 3 sprites randomly
     if(random==0)
     {
         setRect(sprite1.x, sprite1.y, sprite1.w, sprite1.h);    
     }
     if(random==1)
     {
-        // srcRect=sprite2; 
         setRect(sprite2.x, sprite2.y, sprite2.w, sprite2.h);    
     }
     if(random==2)
     {
-        // srcRect=sprite3;
         setRect(sprite3.x, sprite3.y, sprite3.w, sprite3.h); 
     }
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
@@ -24,9 +23,7 @@ void NormalCar::Draw()
 NormalCar::NormalCar(int x)
 {  
     // int r=300+(rand()%900);
-    int pos[4] = {300,500,600,700};
-
-    int r = rand()%3;
+    // int r = rand()%3;
     if(x ==1)
     {
         moverRect={390,800, 100, 120};
@@ -41,7 +38,9 @@ void NormalCar::DriveNormalCar(SDL_Rect car,int dir)
 {
     if(moverRect.y<0)
     {
-        moverRect.y= 800;
+        //if normal car goes out of screen
+        //normal car comes back on the screen
+        moverRect.y= 800; 
         // int r2=300+(rand()%900);
 
         moverRect.x+= 100;
@@ -50,7 +49,7 @@ void NormalCar::DriveNormalCar(SDL_Rect car,int dir)
             moverRect.x = 390;
         }
         
-        random=rand()%3;
+        random=rand()%3; 
     }
 
     //prevent normal car from crashing into police car

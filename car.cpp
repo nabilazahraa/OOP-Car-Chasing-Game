@@ -19,30 +19,41 @@ void car::setmoverRect(int x, int y, int w, int h)
     moverRect.h = h;
 }
 
-SDL_Rect  car::getmoverRect()
+SDL_Rect car::getmoverRect()
 {
     return moverRect;
 }
 
-void car::DriveHero(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycode key)
+SDL_Rect* car::getMoverRect()
 {
-
+    return &moverRect;
 }
+//defined in heroCar
+void car::DriveHero(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycode key)
+{}
 
 void car::DriveCar()
-{
-    
-}
+{}
 
 void car::DriveNormalCar(SDL_Rect car, int x)
-{
-    
-}
+{}
 
 int car::getDirection()
 {}
 
 void car::DisplayScore()
+{};
+
+void car::DrawBullets(car* p,car*)
 {
 
 };
+void car::DrawBullets(car*)
+{
+
+};
+void car::IncreaseScore(){};
+
+void car::DecreaseHealth(){};
+
+int car::getLife(){};

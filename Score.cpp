@@ -1,5 +1,6 @@
 #include "Score.hpp"
 
+//initializes score values
 Score::Score()
 {
     score = 0;
@@ -23,6 +24,7 @@ void Score::operator -=(int x)
     score -=x;
 }
 
+//displays score on the screen 
 void Score::displayScore(int x, int y,int w)
 {
     string text = "Score: " + to_string(score);

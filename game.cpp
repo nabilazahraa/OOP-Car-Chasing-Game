@@ -180,7 +180,7 @@ void Game::run()
 	button car3;
 	button replay;
 
-	Health life;
+	// Health life;
 	Text text(Drawing::gRenderer, "./fonts/MATURASC.TTF",100, "Sprint Car Derby", {255, 255 ,255 ,255});
 
 	finishLine line;
@@ -320,11 +320,13 @@ void Game::run()
 				line.move();
 			}
 
-			if(life.getlives() ==0)
+			//game is lost when lives are =0
+			if(sprintcar.h->getLife()==0)
 			{
-				img = "./assets/gameLost.png";
+				img = "./assets/gamelost.png";
 				loadMedia();
 			}
+
 			sprintcar.CreateNormal();
 
 			//draw chosencar 
@@ -334,9 +336,9 @@ void Game::run()
 			sprintcar.moveCars();	
 
 			//checking if health works
-			// if(life.getlives() >0)
+			// if(life.getlives()< 0)
 			// {
-			// 	--life;
+				
 			// }
 
 			//stop main screen music
@@ -377,14 +379,12 @@ void Game::run()
 			exit.draw(25,206,189,71,180,580,250,70);
 			sprintcar.h->DisplayScore();
 		}
-		if(img == "./assets/gameLost.png")
+		if(img == "./assets/gamelost.png")
 		{
 			replay.draw(25,389,189,70, 180, 500, 250, 70);
 			exit.draw(25,206,189,71,180,580,250,70);
 			sprintcar.h->DisplayScore();
 		}
-		
-		
 		
 		//draw mouse
 		m.draw();

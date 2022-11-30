@@ -7,30 +7,33 @@ void SprintCar::CreateHero(int choice)
     //select option 
     //if 1,2,3 selected make herocar according to that
 
-    if(choice ==1){
-    
-     //sportscar
-    h = new heroCar(984,39,101,174);
+    if(choice ==1)
+    {
+         //ferrari
+        h = new heroCar(984,39,101,174);
     }
     else if(choice == 2)
     {
-    //bike 
-    h = new heroCar(1646,57,189,541) ;
+        //ducati 
+        h = new heroCar(1646,57,189,541) ;
     }
-    //truck
+    
     else if(choice == 3)
     {
-    h = new heroCar(1337,0,219,410) ;
+        //monster truck
+        h = new heroCar(1337,0,219,410) ;
     }
 
+    //police car
     p = new PoliceCar();
     
     
 }
 
+//create normal car 
 void SprintCar::CreateNormal()
 {
-    if (count<2)
+    if (count<2) //only 2 cars should be on the screen
     {
         if(count ==0)
         {
@@ -46,9 +49,13 @@ void SprintCar::CreateNormal()
     }
     count++;
 }
+
+//draw sprint car objects herocar, normal car, police car
 void SprintCar::DrawObject()
 {
     h->Draw();
+    h->DrawBullets(p,h);
+    p->DrawBullets(h);
     p->Draw();
     for(int i=0;i<n.size();i++)
     {
@@ -57,7 +64,7 @@ void SprintCar::DrawObject()
 
 }
 
-
+//move and shoot bullets of hero car
 void SprintCar::move(SDL_Keycode key)
 {
     if(key == SDLK_LEFT || key == SDLK_RIGHT ||key == SDLK_UP ||key== SDLK_DOWN ||key == SDLK_b)
@@ -77,6 +84,7 @@ void SprintCar::moveCars()
     {
         n[i]->DriveNormalCar(police, direction);
     }
-
 }
+
+
 

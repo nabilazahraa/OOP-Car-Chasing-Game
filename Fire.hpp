@@ -1,5 +1,6 @@
 #include <iostream>
 #include <SDL.h>
+#include "car.hpp"
 #pragma once
 
 class Fire
@@ -14,4 +15,6 @@ class Fire
         Fire(int x,int y);
         void ShootFire();
         // void collision();
+        SDL_Rect* getMover();
+        void Mask(car* h);
 };
