@@ -32,6 +32,7 @@ class heroCar:public car{
         void IncreaseScore();
         void DecreaseHealth();
         int getLife();
+        ~heroCar();
        
         void DecreaseScore();
 
