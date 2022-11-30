@@ -306,8 +306,7 @@ void Game::run()
 			//display timer
 			timer.display();
 
-			//if(timer.getTicks()>= 120000)
-			if(timer.getTicks()>= 1200)
+			if(timer.getTicks()>= 120000)
 			{
 				timer.stop();
 				img = "./assets/GameWon.png"; //game won screen
