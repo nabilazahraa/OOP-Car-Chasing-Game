@@ -379,7 +379,7 @@ void Game::run()
 			exit.draw(25,206,189,71,180,580,250,70);
 			sprintcar.h->DisplayScore();
 		}
-		if(img == "./assets/gameLost.png")
+		if(img == "./assets/gamelost.png")
 		{
 			replay.draw(25,389,189,70, 180, 500, 250, 70);
 			exit.draw(25,206,189,71,180,580,250,70);
