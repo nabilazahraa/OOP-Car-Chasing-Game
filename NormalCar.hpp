@@ -17,6 +17,6 @@ class NormalCar : public car
     public:
         NormalCar(int);
         void Draw();
-        void DriveNormalCar(SDL_Rect, int);
-       // void Mask(car* h);
+        void DriveNormalCar(car*,SDL_Rect, int);
+        bool Mask(car* h);
 };

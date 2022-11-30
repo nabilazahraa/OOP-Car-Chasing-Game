@@ -64,5 +64,3 @@ void car::DecreaseHealth(){};
 
 int car::getLife(){};
 
-void car::DecreaseScore()
-{};
