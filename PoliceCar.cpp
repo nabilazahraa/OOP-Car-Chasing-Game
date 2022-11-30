@@ -79,17 +79,25 @@ int PoliceCar::getDirection()
 {
     return direction;
 }
-
 void PoliceCar::DrawBullets(car* h)
 {
     for(int i=0;i<fires.size();i++)
     {
         fires[i]->Draw();
         fires[i]->ShootFire();
-        if(fires[i]->Mask(h)==true)
+        fires[i]->Mask(h);
+        if(fires[i]->firegone==true)
         {
             fires.erase(i+fires.begin());
         }
         
     }
+}
+PoliceCar::~PoliceCar()
+{
+        for(int i=0;i<fires.size();i++)
+    {
+        delete fires[i];
+    }
+    fires.clear();
 }
