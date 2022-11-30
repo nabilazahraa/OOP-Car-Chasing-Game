@@ -100,3 +100,11 @@ void SprintCar::DisplayScore()
 {
     h->DisplayScore();
 }
+SprintCar::~SprintCar()
+{
+    for(int i=0;i<n.size();i++)
+    {
+        delete n[i];
+    }
+    n.clear();
+}
