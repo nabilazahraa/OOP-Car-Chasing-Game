@@ -87,7 +87,10 @@ void heroCar::DrawBullets(car* p,car*h)
     {
         b[i]->Draw();
         b[i]->ShootBullets();
-        b[i]->Mask(p, h);
+        if(b[i]->Mask(p, h)==true)
+        {
+            b.erase(i+b.begin());
+        }
     }
 }
 

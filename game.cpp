@@ -323,20 +323,20 @@ void Game::run()
 
 			sprintcar.CreateNormal();
 
-			//draw chosencar 
-			sprintcar.DrawObject();
-
-			if(timer.getTicks()<=86000)
+			if(timer.getTicks()<=87000)
 			{
 				sprintcar.DrawCars();
 				sprintcar.moveCars();	
 			}
 			//draw finish line when timer about to end
-			else if(timer.getTicks() >= 87000)
+			else if(timer.getTicks() >= 87050 && timer.getTicks()<90000)
 			{
 				line.draw();
 				line.move();
 			}
+			//draw chosencar 
+			sprintcar.DrawObject();
+			
 		}
 
 		//play music for all screen
