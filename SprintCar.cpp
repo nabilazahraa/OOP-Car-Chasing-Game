@@ -67,7 +67,7 @@ void SprintCar::DrawObject()
 //move and shoot bullets of hero car
 void SprintCar::move(SDL_Keycode key)
 {
-    if(key == SDLK_LEFT || key == SDLK_RIGHT ||key == SDLK_UP ||key== SDLK_DOWN ||key == SDLK_b)
+    if(key == SDLK_LEFT || key == SDLK_RIGHT ||key == SDLK_UP ||key== SDLK_DOWN ||key == SDLK_SPACE)
     {
         h->DriveHero(Drawing::gRenderer,Drawing::assets, key);
     }

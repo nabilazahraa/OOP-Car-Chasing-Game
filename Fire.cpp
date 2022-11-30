@@ -30,12 +30,13 @@ SDL_Rect* Fire::getMover()
     return &moverRect;
 }
 
-void Fire::Mask(car* h)
+bool Fire::Mask(car* h)
 {
     bool collision = SDL_HasIntersection(getMover(), h->getMoverRect());
     if(collision == true)
     { 
         h->DecreaseHealth();
     }
+    return collision;
     
 }

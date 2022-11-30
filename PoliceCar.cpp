@@ -86,7 +86,10 @@ void PoliceCar::DrawBullets(car* h)
     {
         fires[i]->Draw();
         fires[i]->ShootFire();
-        fires[i]->Mask(h);
+        if(fires[i]->Mask(h)==true)
+        {
+            fires.erase(i+fires.begin());
+        }
         
     }
 }

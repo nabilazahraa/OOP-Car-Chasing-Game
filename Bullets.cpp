@@ -33,11 +33,12 @@ SDL_Rect* Bullets::getMover()
     return &moverRect;
 }
 
-void Bullets::Mask(car* p, car* h)
+bool Bullets::Mask(car* p, car* h)
 {
     bool collision = SDL_HasIntersection(getMover(), p->getMoverRect());
     if(collision == true)
     { 
         h->IncreaseScore();
     }
+    return collision;
 }

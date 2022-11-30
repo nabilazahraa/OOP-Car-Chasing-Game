@@ -2,19 +2,15 @@
 #include "Drawing.hpp"
 
 //Draw the car and its attributes on the screen 
-void heroCar::Draw(){
+void heroCar::Draw()
+{
 
-    //draw bullets
-    // for(int i=0;i<b.size();i++)
-    // {
-    //     b[i]->Draw();
-    //     b[i]->ShootBullets();
-    // }
     //draw health
     life.Draw();
     //draw score
     score.displayScore(90,10,20);
     //increase score 
+    
     ++score;
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
     
@@ -53,7 +49,7 @@ void heroCar::DriveHero(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycod
         if(moverRect.x>200) //not move out of screen in x axis
         moverRect.x-=35;
     }
-    else if(key== SDLK_b){
+    else if(key== SDLK_SPACE){
         // if(fram%2==0)
         {
             Bullets *b1=new Bullets(moverRect.x,moverRect.y);
@@ -61,8 +57,7 @@ void heroCar::DriveHero(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycod
             
         }
     }
-    // fram++;
-
+    
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
 }
 
@@ -82,7 +77,10 @@ void heroCar::DrawBullets(car* p,car*h)
     {
         b[i]->Draw();
         b[i]->ShootBullets();
-        b[i]->Mask(p, h);
+        if(b[i]->Mask(p, h)== true)
+        {
+            b.erase(b.begin()+i);
+        }
     }
 }
 
