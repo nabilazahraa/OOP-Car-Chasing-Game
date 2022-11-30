@@ -14,6 +14,7 @@ class Score
         void operator -=(int x);
         void operator ++();
         void displayScore(int, int,int);
+        bool operator >(int x);
 
 
 };

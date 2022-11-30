@@ -290,7 +290,7 @@ void Game::run()
 		
 		if(img =="./assets/road.png")
 		{
-
+			//background scrolling
 			scrollingOffset += 30;
 			if( scrollingOffset > SCREEN_HEIGHT)
 			{
@@ -306,23 +306,17 @@ void Game::run()
 			//display timer
 			timer.display();
 
-			if(timer.getTicks()>= 120000)
+			if(timer.getTicks()>= 90000)
 			{
 				timer.stop();
 				img = "./assets/GameWon.png"; //game won screen
 				loadMedia();
 			}
 
-			//draw finish line when timer about to end
-			if(timer.getTicks() >= 118000)
-			{
-				line.draw();
-				line.move();
-			}
-
 			//game is lost when lives are =0
 			if(sprintcar.h->getLife()==0)
 			{
+				
 				img = "./assets/gamelost.png";
 				loadMedia();
 			}
@@ -331,15 +325,20 @@ void Game::run()
 
 			//draw chosencar 
 			sprintcar.DrawObject();
-			
-			//move police and normal cars
-			sprintcar.moveCars();	
 
-			//checking if health works
-			// if(life.getlives()< 0)
-			// {
-				
-			// }
+			if(timer.getTicks()<=87000)
+			{
+				sprintcar.DrawCars();
+				sprintcar.moveCars();	
+			}
+			//draw finish line when timer about to end
+			else if(timer.getTicks() >= 87000)
+			{
+				line.draw();
+				line.move();
+			}
+			// //move police and normal cars
+			// sprintcar.moveCars();	
 
 			//stop main screen music
 			//Mix_PauseMusic();
@@ -394,5 +393,5 @@ void Game::run()
 
 	    SDL_Delay(100);	//causes sdl engine to delay for specified miliseconds
 	}
-			
+		
 }

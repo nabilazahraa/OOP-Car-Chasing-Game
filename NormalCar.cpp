@@ -34,7 +34,7 @@ NormalCar::NormalCar(int x)
     
 }
 
-void NormalCar::DriveNormalCar(SDL_Rect car,int dir)
+void NormalCar::DriveNormalCar(car *h, SDL_Rect car,int dir)
 {
     if(moverRect.y<0)
     {
@@ -53,20 +53,35 @@ void NormalCar::DriveNormalCar(SDL_Rect car,int dir)
     }
 
     //prevent normal car from crashing into police car
-    if(moverRect.x+10 == car.x ||moverRect.x-10 ==car.x || moverRect.x ==car.x)
+    if(Mask(h) == false)
     {
-        if(dir == -1)
+        if(moverRect.x+10 == car.x ||moverRect.x-10 ==car.x || moverRect.x ==car.x)
         {
-            moverRect.x+=50;
+            if(dir == -1)
+            {
+                moverRect.x+=50;
+            }
+            else
+            {
+                moverRect.x -=50;
+            }
         }
-        else
-        {
-            moverRect.x -=50;
-        }
+        // if(moverRect.y<200)
+        // {
+        //     moverRect.y-=20;
+        // }
+        moverRect.y -= 10;
     }
-    // if(moverRect.y<200)
-    // {
-    //     moverRect.y-=20;
-    // }
-    moverRect.y -= 10;
+    
+    
+}
+
+bool NormalCar::Mask(car* h)
+{
+    bool collision = SDL_HasIntersection(getMoverRect(), h->getMoverRect());
+    if(collision == true)
+    { 
+        h->DecreaseScore();
+    }
+    return collision;
 }

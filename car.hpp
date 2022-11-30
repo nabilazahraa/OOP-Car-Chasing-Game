@@ -24,16 +24,18 @@ class car{
     //policecar drive function 
     virtual void DriveCar();
     //normal car drive function
-    virtual void DriveNormalCar(SDL_Rect,int);
+    virtual void DriveNormalCar(car* ,SDL_Rect,int );
     //police car direction function
     virtual int getDirection();
     //herocar display score function
     virtual void DisplayScore();
 
-    virtual void DrawBullets(car* p,car*);
+    virtual void DrawBullets(car* p, car*);
      virtual void DrawBullets(car*);
     virtual void IncreaseScore();
     virtual void DecreaseHealth();
     virtual int getLife();
+    virtual void DecreaseScore();
+    virtual bool Mask(car* h);
     
 };

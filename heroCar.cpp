@@ -93,3 +93,11 @@ int heroCar::getLife()
 {
     return life.getlives();
 }
+
+void heroCar::DecreaseScore()
+{
+    if(score>0)
+    {
+        score-=100;
+    }
+}
