@@ -12,11 +12,8 @@ using namespace std;
 
 class heroCar:public car{
     private:
-        // int speed; 
         Score score;
         Health life;
-        // SDL_Rect moverRect;
-        // SDL_Rect sprite; 
         int fram=0;
         vector<Bullets*> b;
 
@@ -33,7 +30,6 @@ class heroCar:public car{
         void DecreaseHealth();
         int getLife();
         ~heroCar();
-       
         void DecreaseScore();
 
 };

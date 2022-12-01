@@ -162,7 +162,8 @@ void Game::run()
 {
 	bool quit = false;
 	SDL_Event e;
-
+	
+	//game timer
 	Timer timer;
 
 	SprintCar sprintcar;
@@ -171,6 +172,7 @@ void Game::run()
 
 	Mouse m;
 	
+	//buttons 
 	button play;
 	button rules;
 	button exit;
@@ -181,7 +183,9 @@ void Game::run()
 	button replay;
 
 	// Health life;
-	Text text(Drawing::gRenderer, "./fonts/MATURASC.TTF",100, "Sprint Car Derby", {255, 255 ,255 ,255});
+	Text text(Drawing::gRenderer, "./fonts/MATURASC.TTF",160, "Sprint Car Derby", {255, 255 ,255 ,255});
+	Text text1(Drawing::gRenderer, "./fonts/MATURASC.TTF",160, "Sprint Car Derby", {192, 47 ,201 ,255});
+	Text text2(Drawing::gRenderer, "./fonts/MATURASC.TTF",160, "Sprint Car Derby", {33, 158 ,192 ,255});
 
 	finishLine line;
    
@@ -205,7 +209,7 @@ void Game::run()
 				//move the car using arrow keys	
 				sprintcar.move(e.key.keysym.sym);
 			}
-			//click on buttons
+			//when buttons are clicked 
 			if(e.type == SDL_MOUSEBUTTONDOWN)
 			{
 				//start game
@@ -213,6 +217,7 @@ void Game::run()
 				{
 					if(play.handleEvent(&e) ==true)
 					{
+						//go to choose screen
 						img ="./assets/choose.gif";
 						loadMedia();
 					}
@@ -231,23 +236,22 @@ void Game::run()
 					if(exit.handleEvent(&e) ==true)
 					{
 						quit = true;
-						
 					}
 				}
 				if(img == "./assets/rules.png")
 				{
-					//go back from rules screen
+					//go back from rules screen to main screen
 					if(back.handleEvent(&e) ==true)
 					{
 						img = "./assets/smthng.gif";
 						
 						loadMedia();
-						
 					}
 				}
 				//choosing cars
 				if(img =="./assets/choose.gif")
 				{
+					//first button clicked car 1 created
 					if(car1.handleEvent(&e) ==true)
 					{
 						img = "./assets/road.png";
@@ -256,6 +260,7 @@ void Game::run()
 						timer.start();
 						
 					}
+					//second button clicked car 2 created
 					else if(car2.handleEvent(&e) ==true)
 					{
 						img = "./assets/road.png";
@@ -263,6 +268,7 @@ void Game::run()
 						loadMedia();
 						timer.start();
 					}
+					//third button clicked car 3 created
 					else if(car3.handleEvent(&e) ==true)
 					{
 						img = "./assets/road.png";
@@ -271,10 +277,10 @@ void Game::run()
 						timer.start();
 					}
 				}
-
+		
 				if(replay.handleEvent(&e) ==true)
 				{
-					//go to main screen again
+					//go to choose screen again
 					img ="./assets/choose.gif";
 					loadMedia();
 				}
@@ -290,13 +296,14 @@ void Game::run()
 		
 		if(img =="./assets/road.png")
 		{
-			//background scrolling
+			//background scrolling 
 			scrollingOffset += 30;
 			if( scrollingOffset > SCREEN_HEIGHT)
 			{
 				scrollingOffset = 0;
 			}
 			
+			//calling background scroll
 			SDL_Rect renderQuad = { 0, scrollingOffset, SCREEN_WIDTH, SCREEN_HEIGHT };
 			SDL_RenderCopy( Drawing::gRenderer, gTexture, NULL, &renderQuad);
 			renderQuad = { 0, scrollingOffset - SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT};
@@ -306,25 +313,31 @@ void Game::run()
 			//display timer
 			timer.display();
 
-			if(timer.getTicks()>= 90000)
+			//game win if time up
+			if(timer.getTicks()> 90000)
 			{
-				timer.stop();
 				img = "./assets/GameWon.png"; //game won screen
 				loadMedia();
+				timer.stop();
+			}
+			//draw chosencar 
+			else if(timer.getTicks()<=90000)
+			{
+				sprintcar.DrawObject();
 			}
 
-			//game is lost when lives are =0
+			//game is lost when lives are = 0
 			if(sprintcar.getLife()==0)
-			{
-				
+			{	
 				img = "./assets/gamelost.png";
 				loadMedia();
 			}
 
-			sprintcar.CreateNormal();
-
-			if(timer.getTicks()<=87000)
+			//if time not up create cars
+			if(timer.getTicks()<=87000 && timer.getTicks()<90000)
 			{
+				//create normal cars
+				sprintcar.CreateNormal();
 				sprintcar.DrawCars();
 				sprintcar.moveCars();	
 			}
@@ -334,8 +347,6 @@ void Game::run()
 				line.draw();
 				line.move();
 			}
-			//draw chosencar 
-			sprintcar.DrawObject();
 			
 		}
 
@@ -346,33 +357,40 @@ void Game::run()
 			Mix_PlayMusic( gMusic, -1 );
 		}
 
+		//buttons drawn for main screen
 		if(img =="./assets/smthng.gif")
 		{
-			text.display(50,50,Drawing::gRenderer);
+			text2.display(87,87,Drawing::gRenderer);
+			text1.display(80,80,Drawing::gRenderer);
+			text.display(84,84,Drawing::gRenderer);
 			play.draw(25,24,189,70, 180, 500, 250, 70);
 			rules.draw(25,111,189,71,180,580,250,70);
 			exit.draw(25,206,189,71, 180, 660, 250,70);
 		}
 
-		if(img == "./assets/rules.png")
+		//buttons drawn for rules screen
+		else if(img == "./assets/rules.png")
 		{
 			back.draw(25,301,189,70,20,10,150,70);
 		}
 		
-		if(img == "./assets/choose.gif")
+		//buttons for choose screen
+		else if(img == "./assets/choose.gif")
 		{
 			car1.draw(278,16,206,198, 200,300,300,300); //ferrari button
 			car2.draw(521,15,206,197, 600,300,300,300); //ducati button
 			car3.draw(415,251,206,197,1000,300,300,300); //monster truck button
+
 		}
 
-		if(img == "./assets/GameWon.png")
+		//buttons for game won and game lost screen
+		else if(img == "./assets/GameWon.png")
 		{
 			replay.draw(25,389,189,70, 180, 500, 250, 70);
 			exit.draw(25,206,189,71,180,580,250,70);
 			sprintcar.DisplayScore();
 		}
-		if(img == "./assets/gamelost.png")
+		else if(img == "./assets/gamelost.png")
 		{
 			replay.draw(25,389,189,70, 180, 500, 250, 70);
 			exit.draw(25,206,189,71,180,580,250,70);

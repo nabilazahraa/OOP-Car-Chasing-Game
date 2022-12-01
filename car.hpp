@@ -29,13 +29,19 @@ class car{
     virtual int getDirection();
     //herocar display score function
     virtual void DisplayScore();
-
+    //hero car function for bullets
     virtual void DrawBullets(car* p, car*);
-     virtual void DrawBullets(car*);
+    //police car funtion for bullets
+    virtual void DrawBullets(car*);
+    //increase score of hero car
     virtual void IncreaseScore();
+    //decrease health of hero car
     virtual void DecreaseHealth();
+    //return health of hero car
     virtual int getLife();
+    //decrease score of hero car
     virtual void DecreaseScore();
+    //mask for 
     virtual bool Mask(car* h);
     
 };

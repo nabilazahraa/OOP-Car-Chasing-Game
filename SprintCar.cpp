@@ -24,7 +24,7 @@ void SprintCar::CreateHero(int choice)
         h = new heroCar(1337,0,219,410) ;
     }
 
-    //police car
+    //create police car
     p = new PoliceCar();
     
     
@@ -59,10 +59,13 @@ void SprintCar::DrawObject()
 
 }
 
+//draw normal car and police car
 void SprintCar::DrawCars()
 {
-    p->DrawBullets(h);
+    p->DrawBullets(h); //draw bullets of police car
     p->Draw();
+
+    //normal car 
     for(int i=0;i<n.size();i++)
     {
         n[i]->Draw();
@@ -91,15 +94,19 @@ void SprintCar::moveCars()
     }
 }
 
+//returns life of hero car
 int SprintCar::getLife()
 {
     return h->getLife();
 }
 
+//displays score of hero car
 void SprintCar::DisplayScore()
 {
     h->DisplayScore();
 }
+
+//destructor for sprintcar
 SprintCar::~SprintCar()
 {
     for(int i=0;i<n.size();i++)

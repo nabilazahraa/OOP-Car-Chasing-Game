@@ -57,6 +57,7 @@ bool Timer::isStarted()
 //display timer on screen
 void Timer::display()
 {
+
     string secs;
     int s= (getTicks() / 1000 )%60;
     if(s<10)

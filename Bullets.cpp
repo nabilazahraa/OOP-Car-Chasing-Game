@@ -5,6 +5,7 @@
 #include<SDL.h>
 #include"heroCar.hpp"
 
+//draw bullets
 void Bullets::Draw()
 {
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
@@ -32,20 +33,22 @@ void Bullets::ShootBullets()
         }
 }
 
+//return position of bullet
 SDL_Rect* Bullets::getMover()
 {
     return &moverRect;
 }
 
-bool Bullets::Mask(car* p, car* h)
+//collision of bullets with car
+void Bullets::Mask(car* p, car* h)
 {   
     bool collision = SDL_HasIntersection(getMover(), p->getMoverRect());
     if(collision == true)
     { 
-        h->IncreaseScore();
+        h->IncreaseScore(); //increase score of hero car if collision 
         BoomMove={moverRect.x,moverRect.y,60,60};
         SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &Boom, &BoomMove);
         moverRect.y=-30;
     }
-    return collision;
+    
 }

@@ -6,11 +6,6 @@ Score::Score()
     score = 0;
 }
 
-//increase score while moving
-void Score::operator ++()
-{
-    ++score;
-}
 
 //special increase score by x = 1000 when police car destroyed
 void Score::operator +=(int x)
@@ -24,9 +19,10 @@ void Score::operator -=(int x)
     score -=x;
 }
 
+//prevent score from going below 0
 bool Score::operator >(int x)
 {
-    return score<x;
+    return score>x;
 }
 
 

@@ -2,53 +2,24 @@
 #include <iostream>
 #include <SDL.h>
 
+//draw police car
 void PoliceCar::Draw()
 {
-    //draw fires
-    // for(int i=0;i<fires.size();i++)
-    // {
-    //     fires[i]->Draw();
-    //     fires[i]->ShootFire();
-        
-    // }
-
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
 };
 
 //Initialize police car values
 PoliceCar::PoliceCar()
- {
-    // int r=200+(rand()%550);
+{
     setmoverRect(500,50, 100, 120);
     setRect(1136,27, 139,256);
     direction = 1;
     
 };
 
+//drive police car
 void PoliceCar::DriveCar()
 {
-    // int random2=25+(rand()%35);
-    // if(moverRect.y<20)
-    //     moverRect.y+=25;
-        
-    // random=rand()%10;
-
-    // if(random==0)
-    // {
-    //     if(moverRect.x+random2>1000)
-    //         moverRect.x-=random2;   
-    //     else
-    //         moverRect.x+=random2;
-    // }
-
-    // if(random==1)
-    // {
-    //     if(moverRect.x-random2<300)
-    //         moverRect.x+=random2;
-    //     else
-    //         moverRect.x-=random2;
-    // }
-
     //moving car left and right 
     if(direction ==1)
     {
@@ -58,6 +29,8 @@ void PoliceCar::DriveCar()
     {
         moverRect.x-=30;
     }
+
+    //change direction if touching boundary
     if(moverRect.x<=300 || moverRect.x>=1100)
     {
         direction *=-1;
@@ -79,13 +52,16 @@ int PoliceCar::getDirection()
 {
     return direction;
 }
+
+//draw bullets of police car
 void PoliceCar::DrawBullets(car* h)
 {
     for(int i=0;i<fires.size();i++)
     {
-        fires[i]->Draw();
-        fires[i]->ShootFire();
-        fires[i]->Mask(h);
+        fires[i]->Draw(); //draw fire
+        fires[i]->ShootFire(); //movement of fire
+        fires[i]->Mask(h); //collision with hero car
+        //delete fire if missed
         if(fires[i]->firegone==true)
         {
             fires.erase(i+fires.begin());
@@ -93,9 +69,11 @@ void PoliceCar::DrawBullets(car* h)
         
     }
 }
+
+//destructor of police car
 PoliceCar::~PoliceCar()
 {
-        for(int i=0;i<fires.size();i++)
+    for(int i=0;i<fires.size();i++)
     {
         delete fires[i];
     }

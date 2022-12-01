@@ -2,26 +2,14 @@
 #include "Drawing.hpp"
 
 //Draw the car and its attributes on the screen 
-void heroCar::Draw(){
-
-    //draw bullets
-    // for(int i=0;i<b.size();i++)
-    // {
-    //     b[i]->Draw();
-    //     b[i]->ShootBullets();
-    // }
-
-   
+void heroCar::Draw()
+{
     //draw health
     life.Draw();
     //draw score
     score.displayScore(90,10,20);
-    //increase score 
-    ++score;
-
 
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
-    
 
 }
 
@@ -37,18 +25,6 @@ heroCar::heroCar(int x, int y, int w, int h )
 void heroCar::DriveHero(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycode key)
 {
     
-    // if (key == SDLK_UP)
-    // {
-    //     if(moverRect.y<0) 
-    //         moverRect.y = 800;
-    //         //not move out of screen in y axis
-    //      moverRect.y-=30;
-    // }
-    // else if (key == SDLK_DOWN ) {
-    //     if(moverRect.y<700) //not move out of screen in y axis
-    //     moverRect.y+=30;
-    // }
-
     if (key==SDLK_RIGHT) {
         if(moverRect.x<1100) //not move out of screen in x axis
         moverRect.x+=35;
@@ -59,18 +35,17 @@ void heroCar::DriveHero(SDL_Renderer* gRenderer, SDL_Texture* assets, SDL_Keycod
         moverRect.x-=35;
     }
     else if(key== SDLK_SPACE){
-        // if(fram%2==0)
-        {
-            Bullets *b1=new Bullets(moverRect.x,moverRect.y);
-            b.push_back(b1);
-            
-        }
+    
+        Bullets *b1=new Bullets(moverRect.x,moverRect.y);
+        b.push_back(b1);
+       
     }
-    // fram++;
+   
 
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
 }
 
+//Increase score of hero car
 void heroCar::IncreaseScore()
 {
     score+=1000;
@@ -81,12 +56,14 @@ void heroCar::DisplayScore()
     score.displayScore(500,700,100); 
 }
 
+//draw bullets of hero car
 void heroCar::DrawBullets(car* p,car*h)
 {
     for(int i=0;i<b.size();i++)
     {
         b[i]->Draw();
         b[i]->ShootBullets();
+        b[i]->Mask(p,h);
         if(b[i]->gone==true)
         {
             b.erase(b.begin()+i); //DELETES THE BULLETS OBJECT AS SOON AS IT LEAVES SCREEN.
@@ -94,17 +71,19 @@ void heroCar::DrawBullets(car* p,car*h)
     }
 }
 
+//decrease health of hero car
 void heroCar::DecreaseHealth()
 {
     --life;
 }
 
+//return life of hero car
 int heroCar::getLife()
 {
     return life.getlives();
 }
 
-
+//decrease score of hero car if it is greater than 0
 void heroCar::DecreaseScore()
 {
     if(score>0)

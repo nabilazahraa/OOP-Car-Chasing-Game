@@ -42,8 +42,6 @@ void NormalCar::DriveNormalCar(car *h, SDL_Rect car,int dir)
         //if normal car goes out of screen
         //normal car comes back on the screen
         moverRect.y= 800; 
-        // int r2=300+(rand()%900);
-
         moverRect.x+= 100;
         if(moverRect.x>900)
         {
@@ -54,26 +52,24 @@ void NormalCar::DriveNormalCar(car *h, SDL_Rect car,int dir)
     }
     if(Mask(h) == false)
     {
-    //prevent normal car from crashing into police car
-    if(moverRect.x+10 == car.x ||moverRect.x-10 ==car.x || moverRect.x ==car.x)
-    {
-        if(dir == -1)
+        //prevent normal car from crashing into police car
+        if(moverRect.x+10 == car.x ||moverRect.x-10 ==car.x || moverRect.x ==car.x)
         {
-            moverRect.x+=50;
+            if(dir == -1)
+            {   //move car to right
+                moverRect.x+=50;
+            }
+            else
+            {   //move car to left
+                moverRect.x -=50;
+            }
         }
-        else
-        {
-            moverRect.x -=50;
-        }
-    }
-    // if(moverRect.y<200)
-    // {
-    //     moverRect.y-=20;
-    // }
-    moverRect.y -= 10;
+    
+        moverRect.y -= 10;
     }
 }
 
+//collision of normal car with hero car
 bool NormalCar::Mask(car* h)
 {
     bool collision = SDL_HasIntersection(getMoverRect(), h->getMoverRect());

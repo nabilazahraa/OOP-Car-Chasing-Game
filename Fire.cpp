@@ -29,16 +29,20 @@ void Fire::ShootFire()
     }
 }
 
+
+//return positon of Fire
 SDL_Rect* Fire::getMover()
 {
     return &moverRect;
 }
 
+//collision of fire with car
 bool Fire::Mask(car* h)
 {
+    bool collision = SDL_HasIntersection(getMover(), h->getMoverRect());
     if(collision == true)
     { 
-        h->DecreaseHealth();
+        h->DecreaseHealth(); //decrease health of hero car if collsion
         BoomMove={moverRect.x,moverRect.y,60,60};
         SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &Boom, &BoomMove);
         moverRect.y=820;
