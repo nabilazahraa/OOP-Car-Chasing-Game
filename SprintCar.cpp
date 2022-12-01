@@ -114,4 +114,6 @@ SprintCar::~SprintCar()
         delete n[i];
     }
     n.clear();
+    delete [] h;
+    delete [] p;
 }
